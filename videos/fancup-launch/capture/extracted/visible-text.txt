@@ -1,0 +1,32 @@
+NOTE: Live capture of https://fancup.trenchroyale.com/ was blocked by this environment's network egress policy
+(403 policy denial on CONNECT, confirmed via proxy logs — not a site-side error). The user explicitly chose to
+proceed from general/public knowledge instead of live capture. The text below is an inferred brief, not verbatim
+site copy, and should be treated as placeholder messaging until verified against the real page.
+
+PRODUCT: FanCup
+DOMAIN: fancup.trenchroyale.com (Chiliz ecosystem — Chiliz is known for CHZ fan tokens and the Socios.com sports
+fan-engagement platform; Trench Royale appears to be the parent/companion product)
+CATEGORY: Fan prediction / tournament game with crypto-native rewards
+
+INFERRED POSITIONING:
+- A prediction-tournament game for sports fans: pick outcomes, climb a live leaderboard, compete against other fans.
+- Ties into the Chiliz fan-token ecosystem — rewards framed as real, ownable stakes rather than generic points.
+- Built for fans who already live in crypto/Web3 fan culture (Chiliz, Socios) — audience is savvy, online, competitive.
+
+BRIEF FOR THIS VIDEO (from the user):
+- 30-second product launch video.
+- Keynote-announcement energy, not corporate.
+- Structure: a mysterious opening beat that resolves into a confident product reveal.
+- Visual identity: dark theme, near-black background (#0B0B0D), Chiliz red (#E8113C) and electric cyan (#00E5FF)
+  accents.
+- No narration, no music — silent/visual video carried by on-screen typography and motion.
+- Destination: 16:9 landscape.
+
+ON-SCREEN COPY TO USE (placeholder, in absence of verified site copy):
+- Cold open beat: no logo, no words — just dark space, a single point of light/motion building tension.
+- Reveal beat: "FANCUP" wordmark ignites.
+- Value beats (short, punchy, keynote-style lines):
+  "Every match. Every fan. Every call."
+  "Predict the game. Own the outcome."
+  "Climb the leaderboard. Win real rewards."
+- Close: "FanCup. Play the game behind the game." + fancup.trenchroyale.com
