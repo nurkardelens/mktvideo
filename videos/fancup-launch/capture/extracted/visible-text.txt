@@ -1,32 +1,86 @@
-NOTE: Live capture of https://fancup.trenchroyale.com/ was blocked by this environment's network egress policy
-(403 policy denial on CONNECT, confirmed via proxy logs — not a site-side error). The user explicitly chose to
-proceed from general/public knowledge instead of live capture. The text below is an inferred brief, not verbatim
-site copy, and should be treated as placeholder messaging until verified against the real page.
+SOURCE: real screen recording of https://fancup.trenchroyale.com/ supplied directly by the user
+(live browser capture via this environment was blocked by network egress policy; the user then
+recorded and uploaded their own walkthrough, which is used here as the verified source of truth).
+Superseding the earlier placeholder/inferred text.
 
-PRODUCT: FanCup
-DOMAIN: fancup.trenchroyale.com (Chiliz ecosystem — Chiliz is known for CHZ fan tokens and the Socios.com sports
-fan-engagement platform; Trench Royale appears to be the parent/companion product)
-CATEGORY: Fan prediction / tournament game with crypto-native rewards
+PRODUCT: FanCup — fancup.trenchroyale.com — "SEASON I · CLOSED BETA"
+Logo: "FAN CUP" wordmark (helmet/mask mark), nav: Match / Roster / How It Works / Profile /
+Leaderboard. Wallet chip top-right shows live FUN balance.
 
-INFERRED POSITIONING:
-- A prediction-tournament game for sports fans: pick outcomes, climb a live leaderboard, compete against other fans.
-- Ties into the Chiliz fan-token ecosystem — rewards framed as real, ownable stakes rather than generic points.
-- Built for fans who already live in crypto/Web3 fan culture (Chiliz, Socios) — audience is savvy, online, competitive.
+=== HERO POSITIONING (How It Works) ===
+"How FanCup works" — "Predict AI football matches with FUN credits, then follow kickoff, live
+play, and settlement from one match screen."
 
-BRIEF FOR THIS VIDEO (from the user):
-- 30-second product launch video.
-- Keynote-announcement energy, not corporate.
-- Structure: a mysterious opening beat that resolves into a confident product reveal.
-- Visual identity: dark theme, near-black background (#0B0B0D), Chiliz red (#E8113C) and electric cyan (#00E5FF)
-  accents.
-- No narration, no music — silent/visual video carried by on-screen typography and motion.
-- Destination: 16:9 landscape.
+01 - INTRO — "FUN-only football predictions"
+"FanCup is a play-money prediction game. Connect your wallet, pick a market on an AI-simulated
+football match, and stake FUN credits. Nation fan tokens are shown as team collectibles, not
+staking tokens."
 
-ON-SCREEN COPY TO USE (placeholder, in absence of verified site copy):
-- Cold open beat: no logo, no words — just dark space, a single point of light/motion building tension.
-- Reveal beat: "FANCUP" wordmark ignites.
-- Value beats (short, punchy, keynote-style lines):
-  "Every match. Every fan. Every call."
-  "Predict the game. Own the outcome."
-  "Climb the leaderboard. Win real rewards."
-- Close: "FanCup. Play the game behind the game." + fancup.trenchroyale.com
+02 - MATCH FLOW — "Receive FUN - predict - settle"
+- Receive FUN — every new wallet receives play-money FUN credits once on signup.
+- Choose a market — pick 1X2 or Over/Under on the headline AI 6v6 fixture.
+- Stake FUN — predictions use FUN only; nation tokens are view-only.
+- Lock before kickoff — confirmed picks lock; the stake moves from available to locked.
+- Settle in FUN — winning picks return stake x locked odds in play-money credits.
+
+03 - AI MATCH ENGINE — "Every match is played by trained AI teams"
+"FanCup matches are not scripted outcomes. Each nation is represented by an AI team model with
+its own tendencies: passing rhythm, pressure, transition speed, compactness, shooting urgency and
+tactical style. Once kickoff starts, those models play the match inside the simulation."
+- Model-driven teams — every nation has its own decision tendencies.
+- Live simulation — teams resolve passes, shots, pressure and counters after kickoff.
+
+04 - VRF FAIRNESS — "True randomness with VRF"
+"Before the simulation starts, FanCup requests verifiable randomness through MagicBlock VRF. That
+randomness becomes the match seed. The seed drives the deterministic simulation: which choices
+open up, how pressure moments resolve, when teams commit to a pass, shot, press or counter. The
+same seed and same team models reproduce the same match, so the game is fair and auditable."
+- Verifiable seed — MagicBlock VRF supplies the unpredictable match seed.
+- Reproducible result — same seed plus same models produces the same match.
+
+=== ROSTER (National Teams) ===
+"CHILIZ NATIONS CUP · ROSTER" / "National Teams" — six nations shown as cards, each with flag,
+fan-token ticker, tactical identity, and a Last-10-Matches W/D/L strip:
+- Argentina ($ARG) — Compact · Counter — Last 10: 7W 2D 1L
+- Spain ($ESP) — Possession · Tiki-Taka — Last 10: 6W 2D 2L
+- Portugal ($POR) — Wide Attack · Direct — Last 10: 7W 1D 2L
+- Belgium ($BEL) — Transition · Vertical — Last 10: 5W 3D 2L
+- Scotland ($SCO) — High Press · Physical — Last 10: 4W 3D 3L
+- South Africa ($RSA) — Fluid · Wing Play — Last 10: 4W 3D 3L
+
+=== LIVE MATCH SCREEN ===
+Three-column live match view: fan chat (left), center scoreboard + live top-down pitch simulation
+with a match clock, player position dots, and a bold "GOAL" banner ("PORTUGAL Scores!") on a
+scoring event; right column holds the "PREDICTION SLIP" (e.g. "Predictions are locked — kickoff
+sequence has started") and a "LIVE PREDICTIONS" feed of confirmed fan picks.
+
+=== PROFILE ===
+Account stats: Account Balance (FUN), Win Rate (%), Net P&L (FUN). "Linked wallets" — one account,
+shared balance across chains: a primary Solana wallet plus "Link an EVM (Chiliz) wallet — one
+account, both chains — link a wallet on the other chain to sign in and move funds from either
+side." Prediction history lists settled picks (e.g. "Scotland vs Argentina 2-2, Draw @ 9.20x, WON,
+5 FUN, +46 FUN"). The fan-token portfolio panel lists each nation token as "0 · VIEW ONLY" —
+confirming they are cosmetic collectibles, never spendable/stakeable.
+
+=== LEADERBOARD ===
+"FanCup Leaderboard" — "Top players by current spendable FUN balance." Top 20 ranked by FUN
+balance (e.g. #1 Vazillex 4,253.06 FUN, #2 Rin 3,941.89 FUN, #3 Can35 1,655.09 FUN).
+
+=== KEY CORRECTIONS vs. earlier placeholder brief ===
+- This is a PLAY-MONEY game (FUN credits only) — there is no real-money or real-crypto payout.
+  Never say "win real rewards" or imply real financial stakes.
+- Nation fan tokens are cosmetic/collectible and explicitly "view-only" — never say fans "stake"
+  or "spend" fan tokens; only FUN credits are staked.
+- Matches are AI-simulated 6v6 football with model-driven team tendencies, not human esports and
+  not real broadcast footage.
+- Fairness comes from MagicBlock VRF-seeded, reproducible simulation — a concrete, real proof
+  point worth using in place of a generic "provably fair" claim.
+- Product is "Season I · Closed Beta" — avoid implying general public availability.
+
+=== BRIEF FOR THIS VIDEO (unchanged) ===
+30-second product launch video. Keynote-announcement energy, not corporate. Structure: a
+mysterious opening beat resolving into a confident product reveal. Visual identity: dark theme,
+near-black background (#0B0B0D), Chiliz red (#E8113C) and electric cyan (#00E5FF) accents — this is
+the VIDEO's own brand shell, distinct from the app's native green UI, which appears as-is in real
+screenshots. No narration, no music — silent/visual video carried by on-screen typography, motion,
+and the real product captures below. Destination: 16:9 landscape.

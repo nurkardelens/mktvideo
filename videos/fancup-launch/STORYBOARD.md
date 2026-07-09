@@ -1,7 +1,7 @@
 ---
 format: 1920x1080
-message: "FanCup turns every match into a game you can play and win."
-arc: Mystery cold open → Reveal → Benefits (rule of three) → Feature triad → CTA / brand close
+message: "FanCup lets fans predict AI-simulated football matches live, with zero real-money risk."
+arc: Mystery cold open → Reveal → Real-product proof (roster / live match / fairness) → CTA / brand close
 audience: sports fans already living in the Chiliz / Web3 fan-token ecosystem
 mode: collaborative
 ---
@@ -38,7 +38,7 @@ keyMessage: It's about to resolve.
 
 ## Frame 3 — The reveal
 
-- scene: The fractured light collides and ignites into the full FANCUP wordmark, dead-center, full Archivo Black uppercase lockup with a one-line tagline beneath in accent.
+- scene: The fractured light collides and ignites into the full FANCUP wordmark, dead-center, full Archivo Black uppercase lockup with a one-line tagline beneath in accent: "PREDICT THE MATCH. WATCH IT LIVE."
 - duration: 4s
 - transition_in: zoom-through
 - status: outline
@@ -50,58 +50,59 @@ keyMessage: It's about to resolve.
 - asset_candidates:
 
 narrativeRole: Resolve the cold open's tension into the product identity — the thesis statement of the whole video.
-keyMessage: FanCup.
+keyMessage: FanCup — predict AI football, live.
 
-## Frame 4 — Every match, every fan, every call
+## Frame 4 — Six nations, six playstyles
 
-- scene: Three short lines land one at a time, full-bleed, each replacing the last with a hard cut on-beat: "EVERY MATCH." / "EVERY FAN." / "EVERY CALL."
+- scene: The real roster screenshot lands as hero art (Argentina, Spain, Portugal, Belgium, Scotland, South Africa — each with its own tactical identity and form line), with "SIX NATIONS. SIX PLAYSTYLES." set large over/beside it.
 - duration: 4s
 - transition_in: crossfade
 - status: outline
-- src: compositions/frames/04-every-call.html
-- type: benefit_highlight
-- persuasion: Rule of three
+- src: compositions/frames/04-six-nations.html
+- type: feature_showcase
+- persuasion: Value stacking
 - beat: momentum
-- blueprint: kinetic-type-beats
-- asset_candidates:
+- blueprint: device-surface-showcase
+- asset_candidates: assets/roster.png — real "National Teams" roster grid, six nation cards with fan-token ticker, tactics tag, and Last-10 W/D/L strip
 
-narrativeRole: Establish scope and stakes — this is about every game, not a niche feature.
-keyMessage: Every match is in play.
+narrativeRole: Prove there's real breadth and depth here — this is a built roster, not a mockup.
+keyMessage: Every nation plays differently.
 
-## Frame 5 — Predict the game, own the outcome
+## Frame 5 — AI plays, you predict
 
-- scene: Full-bleed red ground; a two-line claim in ink/cream lands large and fit-to-measure: "PREDICT THE GAME." / "OWN THE OUTCOME."
+- scene: The real "GOAL" moment screenshot (live top-down pitch, "Argentina 0-1 Portugal," the GOAL banner + "PORTUGAL Scores!") lands as hero art with "AI PLAYS THE MATCH. YOU CALL IT." set large.
 - duration: 4s
 - transition_in: push-slide LEFT
 - status: outline
-- src: compositions/frames/05-predict-own.html
-- type: benefit_highlight
-- persuasion: Future pacing
-- beat: aspiration
-- asset_candidates:
+- src: compositions/frames/05-ai-plays.html
+- type: feature_showcase
+- persuasion: Show-don't-tell proof
+- beat: excitement
+- blueprint: device-surface-showcase
+- asset_candidates: assets/match-goal.png — real live-match screenshot at the moment of a goal, scoreboard + top-down pitch simulation + GOAL banner
 
-narrativeRole: State the core mechanic and its emotional payoff — agency, not spectatorship.
-keyMessage: You call it, you own it.
+narrativeRole: Prove the AI-simulated match is real and live, not a static odds board.
+keyMessage: The match plays itself — you predict what happens.
 
-## Frame 6 — Predict / Compete / Win
+## Frame 6 — Play-money, provably fair, multi-chain
 
-- scene: Three ink-bordered tiles self-assemble in a staggered cascade across the frame — PREDICT (cyan tile), COMPETE (red tile), WIN (cream tile) — each with a short mono sub-label, holding as a trio.
+- scene: Three ink-bordered tiles self-assemble in a staggered cascade — "PLAY-MONEY. ZERO REAL-MONEY RISK." (cyan tile) / "PROVABLY FAIR — MAGICBLOCK VRF" (red tile) / "ONE ACCOUNT, TWO CHAINS" (cream tile) — holding as a trio.
 - duration: 5s
 - transition_in: push-slide LEFT
 - status: outline
-- src: compositions/frames/06-predict-compete-win.html
+- src: compositions/frames/06-trust-triad.html
 - type: feature_showcase
-- persuasion: Value stacking
-- beat: excitement
+- persuasion: Risk reversal + Value stacking
+- beat: trust → confidence
 - blueprint: grid-card-assemble
 - asset_candidates:
 
-narrativeRole: Give the mechanic a concrete three-step shape the viewer can picture doing.
-keyMessage: Predict, compete, win — the whole loop.
+narrativeRole: Land the three concrete trust facts that make this safe and credible to try — sourced directly from the product's own "How It Works" page, not invented claims.
+keyMessage: No real money at risk, fair by design, works across chains.
 
 ## Frame 7 — Brand close
 
-- scene: Ground swaps to the deep cyan closing plate; the FANCUP wordmark draws itself back in above the tagline "Play the game behind the game." and the URL fancup.trenchroyale.com settles beneath as a mono CTA rail.
+- scene: Ground swaps to the deep cyan closing plate; the FANCUP wordmark draws itself back in above "Season I is live." and the URL fancup.trenchroyale.com settles beneath as a mono CTA rail.
 - duration: 6s
 - transition_in: zoom-through
 - status: outline
@@ -113,4 +114,4 @@ keyMessage: Predict, compete, win — the whole loop.
 - asset_candidates:
 
 narrativeRole: Land on identity and the single next action — the one thing to remember and the one thing to do.
-keyMessage: FanCup — go play it.
+keyMessage: FanCup — Season I is live, go play it.
