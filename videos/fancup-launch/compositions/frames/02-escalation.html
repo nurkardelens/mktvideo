@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>02 Escalation</title>
+    <!-- head is metadata only for the source file; the runtime discards everything
+         outside <template> — see hyperframes-core/references/sub-compositions.md -->
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face{font-family:"Archivo Black";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/ArchivoBlack-Regular.woff2") format("woff2");}
+        @font-face{font-family:"Space Grotesk";font-weight:400 700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-Variable.woff2") format("woff2");}
+        @font-face{font-family:"JetBrains Mono";font-weight:400 500;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-Variable.woff2") format("woff2");}
+
+        /* Root: styled by #root, never a class — see sub-compositions.md Pitfall 3 */
+        #root {
+          position: relative;
+          width: 1920px;
+          height: 1080px;
+          overflow: hidden;
+        }
+
+        /* Full-bleed ground lives on its own class="clip" layer, never on #root itself. */
+        .void-bg {
+          position: absolute;
+          inset: 0;
+          background: #0b0b0d;
+        }
+
+        .shatter-root {
+          position: absolute;
+          inset: 0;
+        }
+
+        /* Stage carries the perspective for the 3D depth-cloud (depth-scatter-assemble). */
+        .stage-wrap {
+          position: absolute;
+          inset: 0;
+          display: grid;
+          place-items: center;
+          perspective: 1400px;
+        }
+
+        /* The cloud itself — rotates gently for "life" while shards live in it.
+           preserve-3d required or z-depth/tumble collapse to a flat 2D scale. */
+        .cloud-stage {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+          will-change: transform;
+        }
+
+        .shatter-field {
+          position: absolute;
+          inset: 0;
+          transform-style: preserve-3d;
+        }
+
+        /* One shard fragment — lives at stage center, GSAP translates each to its
+           own deterministic cloud point (golden-angle scatter, see script). */
+        .shard {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform-style: preserve-3d;
+          backface-visibility: hidden;
+          opacity: 0;
+          will-change: transform, opacity, filter;
+        }
+        .shard::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          clip-path: polygon(50% 0%, 100% 38%, 78% 100%, 22% 100%, 0% 38%);
+        }
+        .shard.yellow::before {
+          background: linear-gradient(135deg, #00e5ff, #007c8f);
+          box-shadow: 0 0 26px 4px rgba(0, 229, 255, 0.55);
+        }
+        .shard.orange::before {
+          background: linear-gradient(135deg, #e8113c, #7c0a20);
+          box-shadow: 0 0 26px 4px rgba(232, 17, 60, 0.55);
+        }
+        .shard:nth-child(1) { width: 64px; height: 64px; }
+        .shard:nth-child(2) { width: 74px; height: 74px; }
+        .shard:nth-child(3) { width: 84px; height: 84px; }
+        .shard:nth-child(4) { width: 94px; height: 94px; }
+        .shard:nth-child(5) { width: 84px; height: 84px; }
+        .shard:nth-child(6) { width: 74px; height: 74px; }
+        /* The two "fastest" shards carry a directional motion-blur streak filter
+           (motion-blur-streak.md Path A — symmetric stdDeviation since these
+           shards dash on an arbitrary diagonal, not a fixed axis). */
+        #shard-1 { filter: url(#streak-a); }
+        #shard-4 { filter: url(#streak-b); }
+        /* Whole scattered cluster carries one shared converge-blur as it
+           compresses inward in Scene 3, selling the rising cut velocity. */
+        .shatter-field { filter: url(#converge-blur); }
+
+        /* Residual glow of the incoming point, echoing off as it shatters into
+           shards; re-used at the end of Scene 3 as the building ignition bloom
+           that hands off into Frame 3's flash. */
+        .core-flash {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 140px;
+          height: 140px;
+          margin-left: -70px;
+          margin-top: -70px;
+          border-radius: 50%;
+          background: radial-gradient(
+            circle,
+            rgba(0, 229, 255, 0.95) 0%,
+            rgba(0, 229, 255, 0.35) 40%,
+            rgba(0, 229, 255, 0) 70%
+          );
+          opacity: 0;
+          will-change: transform, opacity;
+        }
+
+        /* A stray letterform fragment that flares once and is gone — never a
+           resolved word, just a single-beat flash (discrete-text-sequence). */
+        .glyph-flash {
+          position: absolute;
+          left: 58%;
+          top: 32%;
+          transform: translate(-50%, -50%);
+          font-family: "Archivo Black", sans-serif;
+          font-size: 260px;
+          line-height: 0.9;
+          text-transform: uppercase;
+          color: #00e5ff;
+          text-shadow: 0 0 40px rgba(0, 229, 255, 0.6);
+          opacity: 0;
+          will-change: opacity, color;
+        }
+      </style>
+
+      <div id="root" data-composition-id="02-escalation" data-width="1920" data-height="1080" data-duration="3">
+        <div id="void-bg" class="clip void-bg" data-start="0" data-duration="3" data-track-index="0"></div>
+
+        <div id="shatter-root" class="clip shatter-root" data-start="0" data-duration="3" data-track-index="1">
+          <!-- Inline SVG defs: three directional/symmetric blur filters, all
+               seeded to 0 so they are inert until their proxy tween runs. -->
+          <svg width="0" height="0" aria-hidden="true" style="position: absolute">
+            <defs>
+              <filter id="streak-a" x="-80%" y="-80%" width="260%" height="260%">
+                <feGaussianBlur id="streak-a-blur" in="SourceGraphic" stdDeviation="0 0" />
+              </filter>
+              <filter id="streak-b" x="-80%" y="-80%" width="260%" height="260%">
+                <feGaussianBlur id="streak-b-blur" in="SourceGraphic" stdDeviation="0 0" />
+              </filter>
+              <filter id="converge-blur" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur id="converge-blur-blur" in="SourceGraphic" stdDeviation="0" />
+              </filter>
+            </defs>
+          </svg>
+
+          <div class="stage-wrap">
+            <div id="cloud-stage" class="cloud-stage">
+              <div id="shatter-field" class="shatter-field">
+                <div id="shard-0" class="shard yellow"></div>
+                <div id="shard-1" class="shard orange"></div>
+                <div id="shard-2" class="shard yellow"></div>
+                <div id="shard-3" class="shard orange"></div>
+                <div id="shard-4" class="shard yellow"></div>
+                <div id="shard-5" class="shard orange"></div>
+              </div>
+            </div>
+            <div id="core-flash" class="core-flash"></div>
+            <div id="glyph-flash" class="glyph-flash"></div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        const shards = gsap.utils.toArray(".shard");
+        const cloudStage = document.getElementById("cloud-stage");
+        const coreFlash = document.getElementById("core-flash");
+        const glyph = document.getElementById("glyph-flash");
+
+        // ── Deterministic scatter cloud (depth-scatter-assemble vocabulary,
+        //    scatter half only — there is no reassemble/resolve in this frame;
+        //    the payoff is deferred to Frame 3's ignite). Every scattered value
+        //    is derived from the shard's index via the golden angle — never
+        //    Math.random — so the cloud renders identically on every seek. ──
+        const N = shards.length; // 6
+        const GOLDEN = Math.PI * (3 - Math.sqrt(5)); // ~2.39943 rad, even spread
+        const RADIUS = 210; // cloud spread, px
+        const BIAS_X = 65; // "just off-center" — shifts the whole cluster, not symmetric
+        const BIAS_Y = -35;
+        const Z_NEAR = 170;
+        const Z_FAR = -170;
+        const TUMBLE = 70; // deg
+
+        const scatter = shards.map((el, i) => {
+          const a = i * GOLDEN;
+          const depthT = N > 1 ? i / (N - 1) : 0;
+          return {
+            x: Math.cos(a) * RADIUS + BIAS_X,
+            y: Math.sin(a) * RADIUS * 0.62 + BIAS_Y,
+            z: Z_NEAR - depthT * (Z_NEAR - Z_FAR),
+            rotationX: Math.sin(a) * TUMBLE,
+            rotationY: Math.cos(a) * TUMBLE,
+          };
+        });
+
+        // Park every shard stacked at the center BEFORE any tween fires —
+        // this is the "incoming cyan point" the shards burst out of.
+        shards.forEach((el) => {
+          gsap.set(el, {
+            xPercent: -50,
+            yPercent: -50,
+            x: 0,
+            y: 0,
+            z: 0,
+            rotationX: 0,
+            rotationY: 0,
+            scale: 0.2,
+            opacity: 0,
+          });
+        });
+
+        // ── Scene 1 (0.0–1.2s): SHATTER ──────────────────────────────────
+        // Hard cut off Frame 1's point: the point's residual glow flashes and
+        // dissolves while the shards burst outward to their scatter points.
+        tl.fromTo(
+          coreFlash,
+          { opacity: 1, scale: 1 },
+          { opacity: 0, scale: 2.6, duration: 0.35, ease: "power2.out" },
+          0,
+        );
+
+        const SHATTER_STAGGER = 0.06;
+        const SHATTER_DUR = 0.6;
+        shards.forEach((el, i) => {
+          const s = scatter[i];
+          tl.to(
+            el,
+            {
+              x: s.x,
+              y: s.y,
+              z: s.z,
+              rotationX: s.rotationX,
+              rotationY: s.rotationY,
+              scale: 1,
+              opacity: 1,
+              duration: SHATTER_DUR,
+              ease: "power3.out",
+            },
+            i * SHATTER_STAGGER,
+          );
+        });
+
+        // Cloud "life" — a slow rotateY across the whole shot; reverses
+        // direction as the shards collapse inward in Scene 3.
+        tl.fromTo(cloudStage, { rotationY: 0 }, { rotationY: 14, duration: 1.2, ease: "power1.out" }, 0);
+        tl.to(cloudStage, { rotationY: 28, duration: 1.0, ease: "power1.inOut" }, 1.2);
+        tl.to(cloudStage, { rotationY: 5, duration: 0.8, ease: "power2.in" }, 2.2);
+
+        // ── Scene 2 (1.2–2.2s): ACCELERATE + FLICKER + STRAY LETTERFORMS ──
+        // Deterministic glitch flicker per shard — index-derived gaps that
+        // shrink over the window, so tempo visibly accelerates (never
+        // Math.random; every toggle time is computed from i and t).
+        function addGlitch(el, i, tStart, tEnd) {
+          let t = tStart + i * 0.015;
+          let gap = 0.11 - i * 0.004;
+          let low = 0.35 + (i % 2) * 0.1;
+          let k = 0;
+          while (t < tEnd) {
+            tl.set(el, { opacity: k % 2 === 0 ? low : 1 }, t);
+            t += gap;
+            gap *= 0.8; // shrinking gap = accelerating flicker
+            k++;
+          }
+          tl.set(el, { opacity: 1 }, tEnd); // resolved sharp by scene end, no lingering flicker
+        }
+        shards.forEach((el, i) => addGlitch(el, i, 1.2, 2.2));
+
+        // Directional motion-blur-streak dash on the two "fastest" shards
+        // (motion-blur-streak.md): a quick out-and-back zip along their own
+        // cloud vector, blur envelope locked to the same window/ease so peak
+        // blur lands on peak speed and resolves to 0 on the settle.
+        function addStreakDash(el, targetScatter, blurNode, dashStart, dashDur, settleDur, peak) {
+          tl.to(el, { x: targetScatter.x * 1.35, y: targetScatter.y * 1.35, duration: dashDur, ease: "power4.in" }, dashStart);
+          tl.to(el, { x: targetScatter.x, y: targetScatter.y, duration: settleDur, ease: "power2.out" }, dashStart + dashDur);
+
+          const proxy = { v: 0 };
+          const write = () => blurNode.setAttribute("stdDeviation", `${proxy.v} ${proxy.v}`);
+          write(); // seed so a seek to t=0 shows no blur before the dash
+          tl.to(proxy, { v: peak, duration: dashDur, ease: "power4.in", onUpdate: write }, dashStart);
+          tl.to(proxy, { v: 0, duration: settleDur, ease: "power2.out", onUpdate: write }, dashStart + dashDur);
+        }
+        addStreakDash(
+          shards[1],
+          scatter[1],
+          document.getElementById("streak-a-blur"),
+          1.45,
+          0.14,
+          0.18,
+          12,
+        );
+        addStreakDash(
+          shards[4],
+          scatter[4],
+          document.getElementById("streak-b-blur"),
+          1.78,
+          0.14,
+          0.18,
+          12,
+        );
+
+        // Stray letterform fragments — hard-cut flash word-swap
+        // (discrete-text-sequence, adapted to a single glyph): each flares for
+        // one beat with a hard on/off, gone before it resolves into a legible
+        // word. No CSS transition; every state change is an instant tl.set.
+        tl.set(glyph, { textContent: "F", color: "#00e5ff", opacity: 1 }, 1.35);
+        tl.set(glyph, { opacity: 0.4 }, 1.38);
+        tl.set(glyph, { opacity: 1 }, 1.41);
+        tl.set(glyph, { opacity: 0 }, 1.5);
+
+        tl.set(glyph, { textContent: "P", color: "#e8113c", opacity: 1 }, 1.85);
+        tl.set(glyph, { opacity: 0.4 }, 1.88);
+        tl.set(glyph, { opacity: 1 }, 1.91);
+        tl.set(glyph, { opacity: 0 }, 2.02);
+
+        // ── Scene 3 (2.2–3.0s): COMPRESS INWARD — cut-the-curve seam ─────
+        // Shards reverse and converge on center at rising velocity (power3.in
+        // front-loads speed late, so the cut at t=3.0 lands at peak velocity —
+        // directly matching Frame 3's zoom-through continuation). This is a
+        // BUILD, not an exit: opacity stays at 1 (no fade), the shards grow
+        // and brighten as they close in, and the shared converge-blur climbs
+        // through the collision rather than resolving back to 0 — the blur is
+        // deliberately still rising at the cut so it reads continuous into
+        // Frame 3's ignite flash instead of settling here.
+        const CONVERGE_DUR = 0.8;
+        shards.forEach((el, i) => {
+          const s = scatter[i];
+          tl.to(
+            el,
+            {
+              x: 0,
+              y: 0,
+              z: 0,
+              rotationX: s.rotationX * 0.12,
+              rotationY: s.rotationY * 0.12,
+              scale: 1.22,
+              duration: CONVERGE_DUR,
+              ease: "power3.in",
+            },
+            2.2,
+          );
+        });
+
+        // Building ignition bloom — seeds the flash Frame 3 opens on.
+        tl.fromTo(
+          coreFlash,
+          { opacity: 0, scale: 0.4 },
+          { opacity: 0.75, scale: 1.8, duration: CONVERGE_DUR, ease: "power3.in" },
+          2.2,
+        );
+
+        // Shared blur across the whole scattered cluster, climbing through
+        // the collision (see comment above — intentionally does not resolve
+        // to 0 inside this frame).
+        const convergeProxy = { v: 0 };
+        const convergeBlurNode = document.getElementById("converge-blur-blur");
+        const writeConverge = () => convergeBlurNode.setAttribute("stdDeviation", String(convergeProxy.v));
+        writeConverge();
+        tl.to(convergeProxy, { v: 11, duration: CONVERGE_DUR, ease: "power3.in", onUpdate: writeConverge }, 2.2);
+
+        window.__timelines["02-escalation"] = tl;
+      </script>
+    </template>
+  </body>
+</html>
