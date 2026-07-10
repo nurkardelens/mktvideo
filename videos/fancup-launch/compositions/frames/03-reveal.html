@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>03 Reveal</title>
+    <!-- head is metadata only for the source file; the runtime discards everything
+         outside <template> — see hyperframes-core/references/sub-compositions.md -->
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face{font-family:"Archivo Black";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/ArchivoBlack-Regular.woff2") format("woff2");}
+        @font-face{font-family:"Space Grotesk";font-weight:400 700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-Variable.woff2") format("woff2");}
+        @font-face{font-family:"JetBrains Mono";font-weight:400 500;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-Variable.woff2") format("woff2");}
+
+        /* Root: styled by #root, never a class — see sub-compositions.md Pitfall 3 */
+        #root {
+          position: relative;
+          width: 1920px;
+          height: 1080px;
+          overflow: hidden;
+        }
+
+        /* Full-bleed ground lives on its own class="clip" layer, never on #root itself. */
+        .void-bg {
+          position: absolute;
+          inset: 0;
+          background: #0b0b0d;
+        }
+
+        /* ---- Scene 1: shard collision + ignite flash ---- */
+        .shard-field {
+          position: absolute;
+          inset: 0;
+        }
+        .shard {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 46px;
+          height: 46px;
+          margin-left: -23px;
+          margin-top: -23px;
+          border-radius: 4px;
+          opacity: 0;
+          will-change: transform, opacity, filter;
+        }
+        .shard-cyan {
+          background: #00e5ff;
+          box-shadow: 0 0 24px rgba(0, 229, 255, 0.7);
+        }
+        .shard-red {
+          background: #e8113c;
+          box-shadow: 0 0 24px rgba(232, 17, 60, 0.7);
+        }
+
+        .flash {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 900px;
+          height: 900px;
+          margin-left: -450px;
+          margin-top: -450px;
+          border-radius: 50%;
+          background: radial-gradient(
+            circle,
+            #ffffff 0%,
+            #00e5ff 38%,
+            rgba(0, 229, 255, 0) 70%
+          );
+          opacity: 0;
+          transform: scale(0.2);
+          transform-origin: 50% 50%;
+          will-change: transform, opacity;
+        }
+
+        /* ---- Scene 2 + 3: lockup stack, kept inside the 83% caption keep-out ---- */
+        .mark-stack {
+          position: absolute;
+          inset: 0;
+        }
+        .stage {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          height: 896px; /* 0.83 * 1080 — caption keep-out boundary */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 30px;
+        }
+
+        .wordmark-frame {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .wordmark-glow {
+          position: absolute;
+          inset: -140px -220px;
+          background: radial-gradient(
+            ellipse at center,
+            rgba(0, 229, 255, 0.55) 0%,
+            rgba(0, 229, 255, 0.18) 42%,
+            rgba(0, 229, 255, 0) 72%
+          );
+          opacity: 0;
+          z-index: 0;
+          pointer-events: none;
+          will-change: opacity;
+        }
+        .wordmark {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          gap: 4px;
+          font-family: "Archivo Black", sans-serif;
+          font-weight: 400;
+          font-size: 265px;
+          line-height: 0.92;
+          letter-spacing: -0.01em;
+          text-transform: uppercase;
+          color: #ffffff;
+        }
+        .letter {
+          display: inline-block;
+          transform-origin: 50% 50%;
+          will-change: transform, text-shadow, color, opacity;
+        }
+
+        .accent-rule {
+          width: 240px;
+          height: 12px;
+          overflow: visible;
+        }
+        .accent-rule path {
+          fill: none;
+          stroke: #00e5ff;
+          stroke-width: 6;
+          stroke-linecap: round;
+        }
+
+        .tagline {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 14px;
+          font-family: "JetBrains Mono", monospace;
+          font-weight: 500;
+          font-size: 34px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+        }
+        .phrase {
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+        }
+        .tword {
+          display: inline-block;
+          color: #ffffff;
+          opacity: 0;
+          will-change: transform, opacity;
+        }
+        .tword.accent {
+          color: #00e5ff;
+        }
+      </style>
+
+      <div id="root" data-composition-id="03-reveal" data-width="1920" data-height="1080" data-duration="4">
+        <div id="ground" class="clip void-bg" data-start="0" data-duration="4" data-track-index="0"></div>
+
+        <div id="shard-field" class="clip shard-field" data-start="0" data-duration="1" data-track-index="1">
+          <div class="shard shard-cyan" id="shard-1"></div>
+          <div class="shard shard-red" id="shard-2"></div>
+          <div class="shard shard-cyan" id="shard-3"></div>
+          <div class="shard shard-red" id="shard-4"></div>
+          <div class="shard shard-cyan" id="shard-5"></div>
+          <div class="shard shard-red" id="shard-6"></div>
+        </div>
+
+        <div id="flash" class="clip flash" data-start="0" data-duration="1.2" data-track-index="2"></div>
+
+        <div id="mark-stack" class="clip mark-stack" data-start="0" data-duration="4" data-track-index="3">
+          <div class="stage">
+            <div class="wordmark-frame">
+              <div class="wordmark-glow" id="wordmark-glow"></div>
+              <div class="wordmark" id="wordmark">
+                <span class="letter" data-letter="F">F</span>
+                <span class="letter" data-letter="A">A</span>
+                <span class="letter" data-letter="N">N</span>
+                <span class="letter" data-letter="C">C</span>
+                <span class="letter" data-letter="U">U</span>
+                <span class="letter" data-letter="P">P</span>
+              </div>
+            </div>
+
+            <svg class="accent-rule" viewBox="0 0 240 12" xmlns="http://www.w3.org/2000/svg">
+              <path id="accent-path" d="M6 6 H234"></path>
+            </svg>
+
+            <div class="tagline" id="tagline">
+              <div class="phrase phrase-1">
+                <span class="tword" data-tword="p1w1">PREDICT</span>
+                <span class="tword" data-tword="p1w2">THE</span>
+                <span class="tword" data-tword="p1w3">MATCH.</span>
+              </div>
+              <div class="phrase phrase-2">
+                <span class="tword accent" data-tword="p2w1">WATCH</span>
+                <span class="tword accent" data-tword="p2w2">IT</span>
+                <span class="tword accent" data-tword="p2w3">LIVE.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        // ── Scene 1 (0.0–1.0s) ──────────────────────────────────────────
+        // Shards collide at center (continuing the zoom-through seam from Frame 2),
+        // igniting a bright flash that resolves into the wordmark's silhouette.
+        const SHARD_TARGETS = [
+          { id: "shard-1", x: 260, y: 0 },
+          { id: "shard-2", x: 130, y: 225 },
+          { id: "shard-3", x: -130, y: 225 },
+          { id: "shard-4", x: -260, y: 0 },
+          { id: "shard-5", x: -130, y: -225 },
+          { id: "shard-6", x: 130, y: -225 },
+        ];
+        SHARD_TARGETS.forEach((s) => {
+          const el = document.getElementById(s.id);
+          tl.fromTo(
+            el,
+            { x: s.x, y: s.y, scale: 1, opacity: 1, filter: "blur(0px)" },
+            { x: 0, y: 0, scale: 0.15, filter: "blur(6px)", duration: 0.35, ease: "power3.in" },
+            0,
+          );
+          tl.to(el, { opacity: 0, duration: 0.14, ease: "none" }, 0.28);
+        });
+
+        const flash = document.getElementById("flash");
+        tl.fromTo(
+          flash,
+          { opacity: 0, scale: 0.2 },
+          { opacity: 1, scale: 1.4, duration: 0.3, ease: "expo.out" },
+          0.15,
+        );
+        tl.to(flash, { opacity: 0, scale: 2.1, duration: 0.45, ease: "power2.out" }, 0.5);
+
+        const wordmarkFrame = document.querySelector(".wordmark-frame");
+        tl.fromTo(
+          wordmarkFrame,
+          { opacity: 0, scale: 0.94 },
+          { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out" },
+          0.35,
+        );
+
+        const glowHalo = document.getElementById("wordmark-glow");
+        tl.fromTo(
+          glowHalo,
+          { opacity: 0, scale: 0.85 },
+          { opacity: 0.35, scale: 1, duration: 0.4, ease: "power2.out" },
+          1.0,
+        );
+
+        // ── Scene 2 (1.0–2.2s) ──────────────────────────────────────────
+        // Glyphs SOLIDIFY from the flash into solid cream fill — reproduces
+        // asr-keyword-glow's attack/sustain/decay/rest envelope per letter,
+        // paired with a monotonic "solidify" ramp that drives fill opacity
+        // (the glow decays to a rest breadcrumb; the fill, once ignited,
+        // stays solid). A thin accent rule stub draws on beneath via
+        // svg-path-draw (measured stroke length, dashoffset 0).
+        const ATTACK_DUR = 0.12;
+        const RELEASE = 0.35;
+        const REST_LEVEL = 0.25;
+        const MAX_BLUR = 20;
+        const MAX_SCALE_BOOST = 0.05;
+        const SOLIDIFY_ATTACK = 0.18;
+        const PRE_IGNITE_OPACITY = 0.45;
+
+        const LETTER_TIMINGS = {
+          F: { start: 1.0, end: 1.2 },
+          A: { start: 1.12, end: 1.32 },
+          N: { start: 1.24, end: 1.44 },
+          C: { start: 1.36, end: 1.56 },
+          U: { start: 1.48, end: 1.68 },
+          P: { start: 1.6, end: 1.8 },
+        };
+        const REST_RGB = { r: 255, g: 255, b: 255 };
+        const ACTIVE_RGB = { r: 0, g: 229, b: 255 };
+
+        function glowEnvelope(time, start, end) {
+          const releaseEnd = end + RELEASE;
+          if (time < start) return 0;
+          if (time < end) return Math.min((time - start) / ATTACK_DUR, 1);
+          if (time < releaseEnd) {
+            const decay = (time - end) / RELEASE;
+            return 1 - decay * (1 - REST_LEVEL);
+          }
+          return REST_LEVEL;
+        }
+        function solidifyProgress(time, start) {
+          if (time < start) return 0;
+          return Math.min((time - start) / SOLIDIFY_ATTACK, 1);
+        }
+        function lerpChannel(a, b, t) {
+          return Math.round(a + (b - a) * t);
+        }
+
+        const letterEls = document.querySelectorAll(".letter");
+
+        const accentPath = document.getElementById("accent-path");
+        const accentLen = accentPath.getTotalLength();
+        accentPath.style.strokeDasharray = `${accentLen}`;
+        accentPath.style.strokeDashoffset = `${accentLen}`;
+        tl.to(accentPath, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, 1.8);
+
+        // ── Scene 3 (2.2–4.0s) ──────────────────────────────────────────
+        // Tagline reveals in two phrases 0.6s apart via per-word staggered
+        // reveal — dynamic-content-sequencing's precomputed-schedule +
+        // single-driver dispatch, applied at word granularity: each word's
+        // start time is authored up front, one driver scrubs 0→data-duration
+        // and every word's reveal progress is derived from it (no per-word
+        // GSAP tweens, no recompute-per-frame beyond the lookup).
+        const TAGLINE_WORDS = [
+          { key: "p1w1", start: 2.2 },
+          { key: "p1w2", start: 2.3 },
+          { key: "p1w3", start: 2.4 },
+          { key: "p2w1", start: 2.8 },
+          { key: "p2w2", start: 2.9 },
+          { key: "p2w3", start: 3.0 },
+        ];
+        const WORD_REVEAL_DUR = 0.35;
+        const wordEls = {};
+        TAGLINE_WORDS.forEach((w) => {
+          wordEls[w.key] = document.querySelector(`[data-tword="${w.key}"]`);
+        });
+        function easeOutCubic(p) {
+          return 1 - Math.pow(1 - p, 3);
+        }
+
+        // Single driver, multi-element onUpdate — one tween drives both the
+        // per-letter glow/solidify and the per-word tagline reveal.
+        const driver = { t: 0 };
+        tl.to(
+          driver,
+          {
+            t: 4,
+            duration: 4,
+            ease: "none",
+            onUpdate: () => {
+              letterEls.forEach((el) => {
+                const key = el.dataset.letter;
+                const timing = LETTER_TIMINGS[key];
+                if (!timing) return;
+                const env = glowEnvelope(driver.t, timing.start, timing.end);
+                const solid = solidifyProgress(driver.t, timing.start);
+                const blur = MAX_BLUR * env;
+                const scale = 1 + MAX_SCALE_BOOST * env;
+                const alpha = 0.35 + env * 0.65;
+                el.style.textShadow = `0 0 ${blur.toFixed(1)}px rgba(0, 229, 255, ${alpha.toFixed(2)})`;
+                el.style.transform = `scale(${scale.toFixed(3)})`;
+                el.style.color = `rgb(${lerpChannel(REST_RGB.r, ACTIVE_RGB.r, env)}, ${lerpChannel(
+                  REST_RGB.g,
+                  ACTIVE_RGB.g,
+                  env,
+                )}, ${lerpChannel(REST_RGB.b, ACTIVE_RGB.b, env)})`;
+                el.style.opacity = String(PRE_IGNITE_OPACITY + (1 - PRE_IGNITE_OPACITY) * solid);
+              });
+
+              TAGLINE_WORDS.forEach((w) => {
+                const el = wordEls[w.key];
+                const p = Math.min(Math.max((driver.t - w.start) / WORD_REVEAL_DUR, 0), 1);
+                const eased = easeOutCubic(p);
+                el.style.opacity = String(eased);
+                el.style.transform = `translateY(${((1 - eased) * 16).toFixed(1)}px)`;
+              });
+            },
+          },
+          0,
+        );
+
+        // ── Post-settle idle (2.2–4.0s) ─────────────────────────────────
+        // Only subtle jitter (sine-wave-loop, low amplitude) on the wordmark's
+        // glow halo — never on scale/position of the mark itself, no breathing.
+        const IDLE_START = 2.2;
+        const IDLE_DUR = 4 - IDLE_START;
+        const CYCLES = 0.75;
+        const GLOW_BASE_OPACITY = 0.35;
+        const GLOW_AMP = 0.06;
+        const phase = { p: 0 };
+        tl.to(
+          phase,
+          {
+            p: Math.PI * 2 * CYCLES,
+            duration: IDLE_DUR,
+            ease: "none",
+            onUpdate: () => {
+              const jitter = Math.sin(phase.p) * GLOW_AMP;
+              glowHalo.style.opacity = String((GLOW_BASE_OPACITY + jitter).toFixed(3));
+            },
+          },
+          IDLE_START,
+        );
+
+        window.__timelines["03-reveal"] = tl;
+      </script>
+    </template>
+  </body>
+</html>
