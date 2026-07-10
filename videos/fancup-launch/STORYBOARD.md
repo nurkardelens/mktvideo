@@ -1,20 +1,48 @@
 ---
 format: 1920x1080
-message: "FanCup lets fans predict AI-simulated football matches live, with zero real-money risk."
-arc: Mystery cold open → Reveal → Real-product proof (roster / live match / fairness) → CTA / brand close
+message: "Something is colliding — join the FanCup waitlist before kickoff."
+arc: Mystery cold open → Escalation → Reveal (logo, real tagline) → Extended mystery (no explainer) → Waitlist CTA close
 audience: sports fans already living in the Chiliz / Web3 fan-token ecosystem
 mode: collaborative
 ---
 
 ## Video direction
 
-**Palette system (from `frame.md`, creative-mode preset remixed onto brand tokens):** `ink` = `#0B0B0D` (near-black), `cream` = `#FFFFFF`, `yellow` = `#00E5FF` (electric cyan, exact brand accent), `orange` = `#E8113C` (Chiliz red, exact brand accent), `green` = `#0098A9` (a darker cyan-family tint — the preset's single reserved closing-plate ground), `pink`/`pink-dark` = red-family tints (`#F46884` / `#F02F56`) for secondary red emphasis. **Ground override:** the preset's own doctrine defaults to a cream ground on nearly every frame; this video instead runs the **near-black `ink` ground on every frame** to match the brief's dark-theme identity, with `cream` flipped to the text/border role and the two accents used as pops. Frame 7 alone swaps to the reserved `green` (dark cyan) plate — still dark, just a distinct hue, which is exactly the "color shift reserved for the closer" the preset intends. Real product screenshots (frames 4–5) are natively dark-UI too, so they sit into the near-black ground without a seam.
+**Pivot note (supersedes the earlier "Season I is live" cut):** this is now a pre-launch waitlist
+teaser, not a live-product demo. Per explicit user decision, real in-app gameplay/UI screenshots
+(roster grid, live GOAL moment, How-It-Works trust facts) are OUT — showing them would imply the
+product is already playable, contradicting "join the waitlist, kickoff is coming." The video stays
+cryptic through the whole build and never resolves into an explainer; it resolves only into the
+brand reveal and the waitlist ask.
 
-**Motion grammar + reveal model:** long-tail `power3` settles everywhere — no bounce, no `back.out`/`elastic.out` overshoot anywhere in this video (this is a keynote, not a toy). Since the video is silent, every frame's reveals are paced to an **internal beat grid** in place of voiceover cues: each Scene still reveals only one new piece at a time, spread across the frame's full duration, never front-loaded in the first ~25%. Holds are real holds — once a frame's content has resolved, it reads still; the only sanctioned aliveness is subtle jitter (`sine-wave-loop`, low amplitude) on a settled hero element.
+**Palette system:** `ink` = `#0B0B0D` (near-black, the ground on every frame). The abstract mystery
+beats (1, 2, 4, 5) run this video's own invented red/cyan brand shell — `yellow` = `#00E5FF`
+(electric cyan) / `orange` = `#E8113C` (Chiliz red) from `frame.md`. The reveal (3) and waitlist
+close (6) instead use the REAL fancup logo mark and copy verbatim from the actual waitlist page at
+fancup.trenchroyale.com — a lime-green soccer-ball icon + lowercase "fancup" wordmark, the real
+headline "Solana and Chiliz, on the same pitch." (gradient "Solana," red "Chiliz"), the real lime
+subhead, and the real "Join the waitlist" CTA. A real asset keeps its real color rather than being
+recolored into the shell — the same principle already used for the real screenshots earlier in
+this project.
 
-**Rhythm / held-frame allocation:** Frames 1–2 are near-wordless atmosphere (mystery has nothing to dump, so it is naturally sparse — this is intentional silence, not underbuilding). Frame 3 is the held climax read (wordmark + tagline, settles and holds for its back half). Frames 4–5 are proof beats built around one real screenshot each — held on the screenshot once it lands. Frame 6 is the one dense trio (three tiles, the named density exception). Frame 7 is the final held sign-off.
+**Type:** the abstract beats use `frame.md`'s Archivo Black / JetBrains Mono. The reveal and close
+use **Inter** (Bold/ExtraBold for the wordmark and headline, Medium/SemiBold for body) to match the
+real site's rounded geometric sans — see `frame.md`'s "Font loading" section.
 
-**Negative list:** no lazy breathing, no slow pan/push in any frame's back half, no bouncy overshoot, no floating decorative "AI" gradients/bokeh, no browser chrome/cursors on the real screenshots (they're used as flat bordered surface cards, not simulated browser windows), no fabricated stat or claim anywhere — frame 6's three claims are lifted verbatim from the product's own How-It-Works copy.
+**Motion grammar + reveal model:** long-tail `power3` settles everywhere, no bounce/overshoot
+anywhere. Silent video — reveals paced to an internal beat grid, never front-loaded. Holds are real
+holds; subtle jitter (`sine-wave-loop`, low amplitude) is the only sanctioned aliveness on a
+settled hero.
+
+**Rhythm:** frames 1–2 are wordless atmosphere (unchanged from the prior cut). Frame 3 is the one
+moment of clarity — the real logo + real tagline — but it does NOT explain the product, only names
+it and quotes its own real headline. Frames 4–5 extend the mystery further with no clarifying
+copy (confusion-marketing energy — a fan is meant to feel curiosity, not get a feature rundown).
+Frame 6 is the held CTA close.
+
+**Negative list:** no lazy breathing, no slow pan/push in any back half, no bouncy overshoot, no
+floating decorative "AI" gradients, no real in-app UI screenshots anywhere in this cut, no
+fabricated claims, no explaining what FanCup actually does beyond its own real tagline.
 
 ---
 
@@ -62,123 +90,96 @@ keyMessage: It's about to resolve.
 
 ## Frame 3 — The reveal
 
-- scene: The fractured light collides and ignites into the full FANCUP wordmark, dead-center, full Archivo Black uppercase lockup with a one-line tagline beneath in accent: "PREDICT THE MATCH. WATCH IT LIVE."
-- duration: 4s
+- scene: The fractured light collides and resolves into the real fancup mark — a lime-green soccer-ball icon beside the lowercase "fancup" wordmark, Inter ExtraBold, centered — with the site's own real headline beneath: "Solana and Chiliz, on the same pitch." (gradient "Solana," red "Chiliz").
+- duration: 5s
 - transition_in: zoom-through
 - status: animated
 - src: compositions/frames/03-reveal.html
 - type: product_intro
-- persuasion: Show-don't-tell proof (the name IS the payoff)
+- persuasion: Show-don't-tell proof (the real name + real tagline IS the payoff — no invented product claim)
 - beat: relief + confidence
 - blueprint: logo-assemble-lockup (Adapt)
 - sfx: impact-bass-1, sparkle, chime
 - asset_candidates:
 
-Adapt: Product_Intro variant — keep the signature move (elements assemble into a fixed, centered mark); the "assembling elements" are Frame 2's incoming shards rather than a ring/orbit system, and there is no continuous orbit or camera tilt — the mark is fixed and 2D throughout.
-Scene 1 (0.0–1.0s): shards collide at center (continuing the `zoom-through` seam from Frame 2) and IGNITE into a bright flash that resolves into the FANCUP wordmark's negative-space silhouette, Archivo Black uppercase, dead-center on the `ink` ground — Centered, ~55% of frame.
-Scene 2 (1.0–2.2s): the wordmark's glyphs SOLIDIFY from the flash into solid `cream` fill (glow-ignite settling on an envelope, `asr-keyword-glow`); a thin `yellow` accent rule stub draws on beneath it (`svg-path-draw`).
-Scene 3 (2.2–4.0s): the tagline "PREDICT THE MATCH. WATCH IT LIVE." reveals beneath in two phrases, 0.6s apart, via per-word staggered reveal (`dynamic-content-sequencing`), the second phrase landing in `yellow`; settles to a held read for the remainder — only subtle jitter (`sine-wave-loop`, low amplitude) on the wordmark's glow, no breathing.
+Adapt: Product_Intro variant — keep the signature move (elements assemble into a fixed, centered mark); the "assembling elements" are Frame 2's incoming shards rather than a ring/orbit system, and there is no continuous orbit or camera tilt — the mark is fixed throughout. Unlike the prior cut, the mark that resolves here is the REAL fancup logo (soccer-ball icon, real lime green, Inter wordmark) rather than an invented red/cyan Archivo Black lockup — the shard-collision energy is this video's own shell delivering the real brand asset intact.
+Scene 1 (0.0–1.2s): shards collide at center (continuing the `zoom-through` seam from Frame 2) and IGNITE into a bright flash on the `ink` ground.
+Scene 2 (1.2–2.4s): the flash resolves into the real fancup mark — the lime-green soccer-ball icon scale-pops in first (small, ~64px, to the left), then the lowercase "fancup" wordmark (Inter ExtraBold, white) cascades in beside it letter-by-letter — Centered, ~30% of frame, held small and clean (not oversized) exactly as the real asset reads.
+Scene 3 (2.4–5.0s): beneath the mark, the real headline reveals in two per-word staggered waves (`dynamic-content-sequencing`): "Solana and" (white) → "Chiliz," (red `orange`) on the first line, then "on the same pitch." (white) on the second — held read for the remainder; only subtle jitter on the icon's glow, no breathing. No subhead, no CTA yet — this frame only names the collision, it does not explain or invite action (that's Frame 6).
 
-focal: (typographic — no image asset)
+focal: (typographic + a small inline SVG logo mark — no photographic asset)
 
-narrativeRole: Resolve the cold open's tension into the product identity — the thesis statement of the whole video.
-keyMessage: FanCup — predict AI football, live.
+narrativeRole: Resolve the cold open's tension into the real brand identity and its own real one-line thesis — nothing more explained yet.
+keyMessage: fancup — Solana and Chiliz, on the same pitch.
 
-## Frame 4 — Six nations, six playstyles
+## Frame 4 — Collision (extended mystery, no explainer)
 
-- scene: The real roster screenshot lands as hero art (Argentina, Spain, Portugal, Belgium, Scotland, South Africa — each with its own tactical identity and form line), with "SIX NATIONS. SIX PLAYSTYLES." set large over/beside it.
-- duration: 4s
+- scene: Two abstract marks drift toward each other across the frame — a purple-to-teal gradient orb (echoing "Solana") and a red orb (echoing "Chiliz") — approaching but never fully merging, with fragments of text flickering in and out ("TWO WORLDS." / "ONE ARENA.") never settling into a full sentence.
+- duration: 5s
 - transition_in: crossfade
 - status: animated
-- src: compositions/frames/04-six-nations.html
-- type: feature_showcase
-- persuasion: Value stacking
-- beat: momentum
-- blueprint: device-surface-showcase (Adapt)
+- src: compositions/frames/04-collision.html
+- type: benefit_highlight
+- persuasion: Curiosity gap (withholding, not revealing)
+- beat: intrigue
+- blueprint: compose
 - sfx: whoosh-short
-- asset_candidates: assets/roster.png — real "National Teams" roster grid, six nation cards with fan-token ticker, tactics tag, and Last-10 W/D/L strip
+- asset_candidates:
 
-Adapt: static-tour variant — one real screenshot as the hero surface (no multi-screen cycling, since there's a single state to show); camera stays static throughout, all motion is element-level.
-Scene 1 (0.0–1.4s): on the `ink` ground, the mono kicker "CHILIZ NATIONS CUP · ROSTER" fades in top-left — asymmetric 70/30, chrome inset, nothing else on screen yet.
-Scene 2 (1.4–2.6s): the real roster screenshot slides in from the right edge and settles as a `cream`-bordered flat surface card occupying the right ~65% of the frame (surface establish: edge slide-in + settle, `power3`, no bounce) — asymmetric 35/65, 3 depth layers (kicker background, card midground, flat border foreground).
-Scene 3 (2.6–4.0s): "SIX NATIONS." lands large on the left third via per-word staggered reveal (`dynamic-content-sequencing`), then "SIX PLAYSTYLES." lands beneath it 0.5s later in `orange` — holds for the remainder; only subtle jitter keeps the roster card alive, no breathing.
+Scene 1 (0.0–1.8s): on the `ink` ground, a purple-to-teal gradient orb drifts in from the left edge and a red orb (`orange`) drifts in from the right, both small (~120px), moving slowly toward center — Centered convergence, asymmetric entry.
+Scene 2 (1.8–3.4s): as the orbs near the center (never touching — held ~200px apart at closest), the fragment "TWO WORLDS." flashes once in cream, holds 0.4s, then hard-cuts to blank (`discrete-text-sequence`, single flash, no full resolve) — a confusion-marketing beat that names a feeling, not a feature.
+Scene 3 (3.4–5.0s): a second fragment "ONE ARENA." flashes the same way, slightly larger; the two orbs pulse once in sync (`ambient-glow-bloom`, a single shared bloom, not a merge) then settle to a held, mysterious stillness — no resolution, no explanation, only subtle jitter on both orbs.
 
-focal: assets/roster.png
-roles: roster.png = cutout (bordered surface card, right 65% of frame)
+focal: (abstract CSS/SVG orbs — no photographic asset)
 
-narrativeRole: Prove there's real breadth and depth here — this is a built roster, not a mockup.
-keyMessage: Every nation plays differently.
+narrativeRole: Extend the intrigue instead of explaining anything — a confusion-marketing beat that deepens curiosity rather than answering it.
+keyMessage: Something is colliding. It isn't explained yet.
 
-## Frame 5 — AI plays, you predict
+## Frame 5 — Kickoff tease
 
-- scene: The real "GOAL" moment screenshot (live top-down pitch, "Argentina 0-1 Portugal," the GOAL banner + "PORTUGAL Scores!") lands as hero art with "AI PLAYS THE MATCH. YOU CALL IT." set large.
-- duration: 4s
-- transition_in: push-slide LEFT
-- status: animated
-- src: compositions/frames/05-ai-plays.html
-- type: feature_showcase
-- persuasion: Show-don't-tell proof
-- beat: excitement
-- blueprint: device-surface-showcase (Adapt)
-- sfx: impact-bass-2
-- asset_candidates: assets/match-goal.png — real live-match screenshot at the moment of a goal, scoreboard + top-down pitch simulation + GOAL banner
-
-Adapt: static-tour variant again — the real GOAL screenshot is the one-state hero surface; static camera, no cursor, no screen-cycling.
-Scene 1 (0.0–1.2s): full-bleed `ink` ground; "AI PLAYS THE MATCH." fades in centered, upper third, Archivo Black uppercase.
-Scene 2 (1.2–2.6s): the real match-goal screenshot scale-pops in beneath it as a `cream`-bordered flat surface card, centered, ~60% of frame (`spring-pop-entrance` on a smooth long-tail settle — no overshoot) — centered, 3 depth layers.
-Scene 3 (2.6–4.0s): "YOU CALL IT." lands beneath the card in `yellow` on a single hard-cut beat (`discrete-text-sequence`) — holds for the remainder; only subtle jitter, no breathing.
-
-focal: assets/match-goal.png
-roles: match-goal.png = cutout (bordered surface card, centered)
-
-narrativeRole: Prove the AI-simulated match is real and live, not a static odds board.
-keyMessage: The match plays itself — you predict what happens.
-
-## Frame 6 — Play-money, provably fair, multi-chain
-
-- scene: Three cream-bordered tiles self-assemble in a staggered cascade on the near-black ground — "PLAY-MONEY. ZERO REAL-MONEY RISK." (cyan tile) / "PROVABLY FAIR — MAGICBLOCK VRF" (red tile) / "ONE ACCOUNT, TWO CHAINS" (cream tile) — holding as a trio.
+- scene: A faint circular arc (echoing the real waitlist page's stadium/orbit line) glows low in frame; glitching fragments of "KICKOFF IS COM—" flicker and cut before completing, never spelling the full word.
 - duration: 5s
 - transition_in: push-slide LEFT
 - status: animated
-- src: compositions/frames/06-trust-triad.html
-- type: feature_showcase
-- persuasion: Risk reversal + Value stacking
-- beat: trust → confidence
-- blueprint: grid-card-assemble (Reproduce)
-- sfx: pop
+- src: compositions/frames/05-kickoff-tease.html
+- type: benefit_highlight
+- persuasion: Scarcity/urgency (withheld completion)
+- beat: anticipation → urgency
+- blueprint: compose
+- sfx: whoosh-cinematic
 - asset_candidates:
 
-Reproduce: Key_Feature grid variant — labeled tiles cascade one-by-one into a row, then hold near-static with a slow push-in.
-Scene 1 (0.0–1.2s): on the `ink` ground, the mono kicker "HOW IT WORKS" fades in top-center; the three-tile region establishes empty.
-Scene 2 (1.2–3.2s): three `cream`-bordered tiles self-ASSEMBLE left-to-right in a staggered cascade (~0.3s gap, `center-outward-expansion`, short-path directly into slot, no bounce): "PLAY-MONEY. ZERO REAL-MONEY RISK." (`yellow` fill) → "PROVABLY FAIR — MAGICBLOCK VRF" (`orange` fill) → "ONE ACCOUNT, TWO CHAINS" (`cream` fill, `ink` text) — centered row, 3-up.
-Scene 3 (3.2–5.0s): the array resolves and holds near-static; one traveling-glow sweep (`ambient-glow-bloom`) passes once left-to-right across the three tiles and settles — no breathing, subtle jitter only for the remainder.
+Scene 1 (0.0–1.6s): on the `ink` ground, a faint arc (a thin `yellow` stroke, ~60% of an ellipse) fades in low in frame, echoing the real site's bottom-of-page orbit line — Asymmetric, lower third, ~40% of frame width.
+Scene 2 (1.6–3.4s): above the arc, the phrase "KICKOFF IS COM—" glitch-types in (`discrete-text-sequence` + a glitch flicker on the last two characters) then hard-cuts to blank before the word ever completes — repeats once, slightly faster, still incomplete (a deliberate confusion-marketing withhold, never spelling "COMING").
+Scene 3 (3.4–5.0s): the arc brightens and pulses once (`ambient-glow-bloom`); the incomplete phrase flashes a final time and holds, unresolved, into the cut — only subtle jitter on the arc's glow, no breathing, no completion.
 
-focal: (typographic tiles — no image asset)
+focal: (abstract SVG arc + typographic fragments — no photographic asset)
 
-narrativeRole: Land the three concrete trust facts that make this safe and credible to try — sourced directly from the product's own "How It Works" page, not invented claims.
-keyMessage: No real money at risk, fair by design, works across chains.
+narrativeRole: Peak urgency without ever paying off the sentence — hands the unresolved tension straight into the CTA close.
+keyMessage: It's almost here. It's not explained. It's not shown.
 
-## Frame 7 — Brand close
+## Frame 6 — Waitlist close
 
-- scene: Ground swaps to the deep cyan closing plate; the FANCUP wordmark draws itself back in above "Season I is live." and the URL fancup.trenchroyale.com settles beneath as a mono CTA rail.
-- duration: 6s
+- scene: Ground holds near-black; the real fancup mark (soccer-ball icon + wordmark) settles centered, the real subhead "The first arena where both worlds collide." fades in beneath in lime green, then "JOIN THE WAITLIST NOW" resolves as a bold CTA button-styled line with fancup.trenchroyale.com beneath it.
+- duration: 8s
 - transition_in: zoom-through
 - status: animated
-- src: compositions/frames/07-brand-close.html
+- src: compositions/frames/06-waitlist-close.html
 - type: cta
-- persuasion: Risk reversal (free/easy framing) + Authority by association (Chiliz ecosystem)
-- beat: triumph + inevitability
+- persuasion: Scarcity/urgency + Authority by association (Chiliz + Solana ecosystems)
+- beat: urgency → anticipation
 - blueprint: logo-assemble-lockup (Adapt)
 - sfx: whoosh-cinematic, chime
 - asset_candidates:
 
-Adapt: Brand_Outro variant — the ground-swap itself replaces "elements clear the stage" (there's no feature-pill formation to disperse here); keep the signature move — the mark draws itself on and the wordmark completes the lockup.
-Scene 1 (0.0–1.2s): hard ground-swap cut to the reserved `green` (dark cyan) closing plate — the frame empties onto this one distinct hue, the only frame in the video to use it.
-Scene 2 (1.2–3.0s): the FANCUP wordmark DRAWS itself on stroke-by-stroke (`svg-path-draw`) in `cream`, centered — Centered, ~50% of frame.
-Scene 3 (3.0–4.4s): "Season I is live." fades in beneath the wordmark (`discrete-text-sequence`) in `ink`-on-`green`.
-Scene 4 (4.4–6.0s): the mono CTA rail "fancup.trenchroyale.com" settles beneath as a pill badge (`spring-pop-entrance`, smooth long-tail, no overshoot) and holds to the end — this frame's one true exit (fade to black); subtle jitter only on the wordmark's glow until then.
+Adapt: Brand_Outro variant — no feature-pill formation to disperse; the signature move is the real mark settling into its held final lockup, matching the real waitlist page's own layout (mark → headline energy → CTA), compressed to fit this frame's copy (subhead + CTA only, since the headline already ran in Frame 3).
+Scene 1 (0.0–1.4s): hard cut to the held `ink` ground (unresolved from Frame 5); a soft green-tinted radial glow blooms in low-amplitude behind center, echoing the real page's background treatment.
+Scene 2 (1.4–2.8s): the real fancup mark (lime-green soccer-ball icon + "fancup" wordmark, Inter ExtraBold) scale-pops in centered — small and clean, matching its real proportions, not oversized.
+Scene 3 (2.8–4.2s): beneath the mark, the real subhead fades in: "The first arena where both worlds collide." in lime green, Inter SemiBold.
+Scene 4 (4.2–6.2s): "JOIN THE WAITLIST NOW" resolves centered beneath as a solid green CTA-button-styled pill (Inter ExtraBold, white on green, matching the real page's button color) via a spring-pop entrance on a smooth long-tail settle — no overshoot.
+Scene 5 (6.2–8.0s): "fancup.trenchroyale.com" settles beneath the button in gray (Inter Medium) and everything holds to the end — this frame's one true exit (fade to black in the last ~0.5s); subtle jitter only on the mark's glow until then.
 
-focal: (typographic — no image asset)
+focal: (typographic + the small inline SVG logo mark — no photographic asset)
 
-narrativeRole: Land on identity and the single next action — the one thing to remember and the one thing to do.
-keyMessage: FanCup — Season I is live, go play it.
+narrativeRole: Land on the real brand identity and the one action that matches the real page's own ask — join the waitlist, nothing more explained.
+keyMessage: fancup — join the waitlist now.

@@ -352,5 +352,14 @@ matching `@font-face` here:
 @font-face{font-family:"Archivo Black";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/ArchivoBlack-Regular.woff2") format("woff2");}
 @font-face{font-family:"Space Grotesk";font-weight:400 700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-Variable.woff2") format("woff2");}
 @font-face{font-family:"JetBrains Mono";font-weight:400 500;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-Variable.woff2") format("woff2");}
+@font-face{font-family:"Inter";font-weight:400 800;font-style:normal;font-display:block;src:url("assets/fonts/Inter-Variable.woff2") format("woff2");}
 </style>
 ```
+
+**Inter added for the pre-launch-teaser pivot.** The real fancup.trenchroyale.com waitlist page
+(lowercase "fancup" wordmark + soccer-ball mark, headline/body copy) uses a clean rounded
+geometric sans, not Archivo Black. Frames that render the real wordmark/logo lockup or quote the
+site's own copy verbatim (the reveal and the closing waitlist CTA) use **Inter** — Bold/ExtraBold
+(700/800) for the wordmark and headline, Medium/SemiBold (500/600) for body copy — matching that
+real asset. Archivo Black stays in use for this video's own invented display copy elsewhere
+(the abstract mystery beats have no real wordmark on screen).

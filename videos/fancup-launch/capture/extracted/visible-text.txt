@@ -77,10 +77,33 @@ balance (e.g. #1 Vazillex 4,253.06 FUN, #2 Rin 3,941.89 FUN, #3 Can35 1,655.09 F
   point worth using in place of a generic "provably fair" claim.
 - Product is "Season I · Closed Beta" — avoid implying general public availability.
 
-=== BRIEF FOR THIS VIDEO (unchanged) ===
-30-second product launch video. Keynote-announcement energy, not corporate. Structure: a
-mysterious opening beat resolving into a confident product reveal. Visual identity: dark theme,
-near-black background (#0B0B0D), Chiliz red (#E8113C) and electric cyan (#00E5FF) accents — this is
-the VIDEO's own brand shell, distinct from the app's native green UI, which appears as-is in real
-screenshots. No narration, no music — silent/visual video carried by on-screen typography, motion,
-and the real product captures below. Destination: 16:9 landscape.
+=== PIVOT — pre-launch waitlist teaser (supersedes the "Season I is live" ending) ===
+The user shared a screenshot of the real pre-launch waitlist page at fancup.trenchroyale.com,
+a different, earlier phase than the "Season I · Closed Beta" product captured above. Real copy
+and asset from that page (verbatim, use as-is):
+- Logo: a lime-green soccer-ball icon + lowercase "fancup" wordmark, clean rounded geometric sans
+  (Inter-like), white text on near-black.
+- Headline: "Solana and Chiliz, on the same pitch." — "Solana" in a purple-to-teal gradient,
+  "Chiliz" in red, rest in white.
+- Subhead (lime green): "The first arena where both worlds collide."
+- Body (gray): "Kickoff is coming. Join the waitlist before the gates open."
+- CTA: an email field + a green "Join the waitlist" button.
+- Background: near-black with a soft green radial glow and a faint circular arc low in frame
+  (reads like a stadium/orbit line).
+
+Per explicit user decision: FULL PIVOT to this pre-launch-teaser framing, not the "already live,
+go play it" framing. Do not show real in-app gameplay/UI screenshots (roster grid, live GOAL
+moment, How-It-Works trust facts) — those imply the product is already playable, which contradicts
+"join the waitlist, kickoff is coming." Extend the mystery instead of resolving into an explainer:
+stay cryptic through the build, use the real headline/subhead/body copy above at the reveal, and
+close on "JOIN THE WAITLIST NOW" + fancup.trenchroyale.com, echoing the real waitlist page's CTA.
+
+=== BRIEF FOR THIS VIDEO (updated) ===
+30-second pre-launch teaser video, confusion-marketing energy: mysterious, deliberately withholding
+explanation, building intrigue toward a waitlist signup rather than a full product explainer.
+Visual identity: dark theme, near-black background (#0B0B0D) throughout; Chiliz red (#E8113C) and
+electric cyan (#00E5FF) carry the abstract mystery beats (this video's own invented brand shell);
+the real logo mark and its real lime-green color are used as-is at the reveal/close (a real asset
+keeps its real color rather than being recolored to fit the shell — same principle already applied
+to the real screenshots). No narration, no music — silent/visual video carried by on-screen
+typography and motion. Destination: 16:9 landscape.
