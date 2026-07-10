@@ -23,7 +23,7 @@ mode: collaborative
 - scene: Pure near-black void. A single point of electric-cyan light sits dead-center, almost imperceptible, and slowly intensifies — no text, no logo, silence as the visual itself.
 - duration: 4s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/01-cold-open.html
 - type: hook
 - persuasion: Pain validation (curiosity as pain)
@@ -43,7 +43,7 @@ keyMessage: Something is about to happen.
 - scene: The cyan point fractures into glitching shards of red and cyan light; fragments of letterforms flare in and out of legibility (a stray "F", a stray "P") without ever resolving — tempo accelerates, cuts get shorter.
 - duration: 3s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/02-escalation.html
 - type: hook
 - persuasion: Pain validation (curiosity escalation)
@@ -65,7 +65,7 @@ keyMessage: It's about to resolve.
 - scene: The fractured light collides and ignites into the full FANCUP wordmark, dead-center, full Archivo Black uppercase lockup with a one-line tagline beneath in accent: "PREDICT THE MATCH. WATCH IT LIVE."
 - duration: 4s
 - transition_in: zoom-through
-- status: outline
+- status: animated
 - src: compositions/frames/03-reveal.html
 - type: product_intro
 - persuasion: Show-don't-tell proof (the name IS the payoff)
@@ -89,7 +89,7 @@ keyMessage: FanCup — predict AI football, live.
 - scene: The real roster screenshot lands as hero art (Argentina, Spain, Portugal, Belgium, Scotland, South Africa — each with its own tactical identity and form line), with "SIX NATIONS. SIX PLAYSTYLES." set large over/beside it.
 - duration: 4s
 - transition_in: crossfade
-- status: outline
+- status: animated
 - src: compositions/frames/04-six-nations.html
 - type: feature_showcase
 - persuasion: Value stacking
@@ -114,7 +114,7 @@ keyMessage: Every nation plays differently.
 - scene: The real "GOAL" moment screenshot (live top-down pitch, "Argentina 0-1 Portugal," the GOAL banner + "PORTUGAL Scores!") lands as hero art with "AI PLAYS THE MATCH. YOU CALL IT." set large.
 - duration: 4s
 - transition_in: push-slide LEFT
-- status: outline
+- status: animated
 - src: compositions/frames/05-ai-plays.html
 - type: feature_showcase
 - persuasion: Show-don't-tell proof
@@ -139,7 +139,7 @@ keyMessage: The match plays itself — you predict what happens.
 - scene: Three cream-bordered tiles self-assemble in a staggered cascade on the near-black ground — "PLAY-MONEY. ZERO REAL-MONEY RISK." (cyan tile) / "PROVABLY FAIR — MAGICBLOCK VRF" (red tile) / "ONE ACCOUNT, TWO CHAINS" (cream tile) — holding as a trio.
 - duration: 5s
 - transition_in: push-slide LEFT
-- status: outline
+- status: animated
 - src: compositions/frames/06-trust-triad.html
 - type: feature_showcase
 - persuasion: Risk reversal + Value stacking
@@ -163,7 +163,7 @@ keyMessage: No real money at risk, fair by design, works across chains.
 - scene: Ground swaps to the deep cyan closing plate; the FANCUP wordmark draws itself back in above "Season I is live." and the URL fancup.trenchroyale.com settles beneath as a mono CTA rail.
 - duration: 6s
 - transition_in: zoom-through
-- status: outline
+- status: animated
 - src: compositions/frames/07-brand-close.html
 - type: cta
 - persuasion: Risk reversal (free/easy framing) + Authority by association (Chiliz ecosystem)

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>03 Reveal</title>
     <!-- head is metadata only for the source file; the runtime discards everything
-         outside <template> — see hyperframes-core/references/sub-compositions.md -->
+         outside the template element — see hyperframes-core/references/sub-compositions.md -->
   </head>
   <body>
     <template>
@@ -171,7 +171,7 @@
         }
       </style>
 
-      <div id="root" data-composition-id="03-reveal" data-width="1920" data-height="1080" data-duration="4">
+      <div id="root" data-composition-id="03-reveal" data-width="1920" data-height="1080" data-duration="4.5">
         <div id="ground" class="clip void-bg" data-start="0" data-duration="4" data-track-index="0"></div>
 
         <div id="shard-field" class="clip shard-field" data-start="0" data-duration="1" data-track-index="1">
@@ -219,7 +219,7 @@
         </div>
       </div>
 
-      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+      <script src="assets/vendor/gsap.min.js"></script>
       <script>
         window.__timelines = window.__timelines || {};
         const tl = gsap.timeline({ paused: true });
@@ -340,8 +340,8 @@
         ];
         const WORD_REVEAL_DUR = 0.35;
         const wordEls = {};
-        TAGLINE_WORDS.forEach((w) => {
-          wordEls[w.key] = document.querySelector(`[data-tword="${w.key}"]`);
+        document.querySelectorAll(".tword").forEach((el) => {
+          wordEls[el.dataset.tword] = el;
         });
         function easeOutCubic(p) {
           return 1 - Math.pow(1 - p, 3);

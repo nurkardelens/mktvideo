@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>05 AI Plays</title>
     <!-- head is metadata only for the source file; the runtime discards everything
-         outside <template> — see hyperframes-core/references/sub-compositions.md -->
+         outside the template element — see hyperframes-core/references/sub-compositions.md -->
   </head>
   <body>
     <template>
@@ -75,7 +75,7 @@
           line-height: 0;
         }
 
-        /* Depth layer 2 — the real screenshot, plain <img>, no fake chrome. */
+        /* Depth layer 2 — the real screenshot, plain image element, no fake chrome. */
         .card-frame img {
           display: block;
           width: 100%;
@@ -113,7 +113,7 @@
         data-composition-id="05-ai-plays"
         data-width="1920"
         data-height="1080"
-        data-duration="4"
+        data-duration="4.5"
       >
         <div id="ink-bg" class="clip ink-bg" data-start="0" data-duration="4" data-track-index="0"></div>
 
@@ -133,7 +133,7 @@
         </div>
       </div>
 
-      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+      <script src="assets/vendor/gsap.min.js"></script>
       <script>
         window.__timelines = window.__timelines || {};
         const tl = gsap.timeline({ paused: true });
@@ -192,7 +192,7 @@
             ease: "none",
             onUpdate: () => {
               const y = Math.sin(jitter.p) * 2;
-              subtitle.style.transform = `translateY(${y}px)`;
+              gsap.set(subtitle, { y });
             },
           },
           2.6,
