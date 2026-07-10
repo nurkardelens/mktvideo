@@ -338,3 +338,19 @@ grid and ledger especially carry placeholders, not fabricated values.
 - **Archivo Black requires Google Fonts**; fallback is `sans-serif`. CJK pairing (Noto Serif SC 900 / NSC 400) carries over from the source's CJK section.
 - **9:16 / 1:1 are guidance**, not pixel-locked; verify the legibility floor per ratio.
 - Decorative geometry (circle, stamp, stacked blocks) is CSS-only; no external imagery is required.
+
+## Font loading (backfilled — no capture ran for this project)
+
+The three type families are staged locally in `assets/fonts/` (fetched directly from Google Fonts
+since this project skipped automated capture). Paste this `<style>` block into every frame's
+`<template>` `<head>`/`<style>` (same files captions use) so `font-family` resolves in preview,
+snapshot, and render alike — do NOT link Google Fonts by URL, and do NOT name any font without a
+matching `@font-face` here:
+
+```html
+<style>
+@font-face{font-family:"Archivo Black";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/ArchivoBlack-Regular.woff2") format("woff2");}
+@font-face{font-family:"Space Grotesk";font-weight:400 700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-Variable.woff2") format("woff2");}
+@font-face{font-family:"JetBrains Mono";font-weight:400 500;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-Variable.woff2") format("woff2");}
+</style>
+```
