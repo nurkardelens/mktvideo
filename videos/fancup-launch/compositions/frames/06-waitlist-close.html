@@ -108,7 +108,7 @@
           align-items: center;
           justify-content: center;
           padding: 30px 68px;
-          background: #22c55e;
+          background: #15803d; /* darker than the real button's #22c55e-ish green — white text needs 3:1 WCAG AA contrast, #22c55e only hit 2.28:1 */
           border-radius: 999px;
           font-family: "Inter", sans-serif;
           font-weight: 800;
@@ -150,7 +150,7 @@
       >
         <div id="ground" class="clip void-bg" data-start="0" data-duration="8" data-track-index="0"></div>
 
-        <div id="bg-glow" class="clip bg-glow" data-start="0" data-duration="8" data-track-index="1"></div>
+        <div id="bg-glow" class="clip bg-glow" data-start="0" data-duration="8" data-track-index="1" data-layout-allow-overflow></div>
 
         <div id="stage" class="clip stage" data-start="0" data-duration="8" data-track-index="2">
           <div class="mark-row" id="mark-row">
