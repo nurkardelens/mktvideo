@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>06 Waitlist Close</title>
+    <!-- head is metadata only for the source file; the runtime discards everything
+         outside the template element — see hyperframes-core/references/sub-compositions.md -->
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face{font-family:"Archivo Black";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/ArchivoBlack-Regular.woff2") format("woff2");}
+        @font-face{font-family:"Space Grotesk";font-weight:400 700;font-style:normal;font-display:block;src:url("assets/fonts/SpaceGrotesk-Variable.woff2") format("woff2");}
+        @font-face{font-family:"JetBrains Mono";font-weight:400 500;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-Variable.woff2") format("woff2");}
+        @font-face{font-family:"Inter";font-weight:400 800;font-style:normal;font-display:block;src:url("assets/fonts/Inter-Variable.woff2") format("woff2");}
+      </style>
+
+      <style>
+        /* Root: styled by #root, never a class — see sub-compositions.md Pitfall 3 */
+        #root {
+          position: relative;
+          width: 1920px;
+          height: 1080px;
+          overflow: hidden;
+        }
+
+        /* Full-bleed ground lives on its own class="clip" layer, never on #root itself. */
+        .void-bg {
+          position: absolute;
+          inset: 0;
+          background: #0b0b0d;
+        }
+
+        /* ---- Scene 1: soft green-tinted ambient background glow ---- */
+        .bg-glow {
+          position: absolute;
+          left: 50%;
+          top: 46%;
+          width: 1500px;
+          height: 1500px;
+          margin-left: -750px;
+          margin-top: -750px;
+          border-radius: 50%;
+          background: radial-gradient(
+            ellipse at center,
+            rgba(34, 197, 94, 0.4) 0%,
+            rgba(139, 198, 63, 0.18) 42%,
+            rgba(11, 11, 13, 0) 72%
+          );
+          opacity: 0;
+          transform-origin: 50% 50%;
+          pointer-events: none;
+          will-change: transform, opacity;
+        }
+
+        /* ---- Scenes 2-5: the centered content stack, kept inside the 83% keep-out ---- */
+        .stage {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          height: 896px; /* 0.83 * 1080 — caption keep-out boundary */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 46px;
+        }
+
+        .mark-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 22px;
+          opacity: 0;
+          transform-origin: 50% 50%;
+          will-change: transform, opacity;
+        }
+        .logo-icon {
+          display: block;
+          width: 84px;
+          height: 84px;
+          flex-shrink: 0;
+        }
+        .wordmark-text {
+          font-family: "Inter", sans-serif;
+          font-weight: 800;
+          font-size: 92px;
+          line-height: 1;
+          letter-spacing: -0.01em;
+          color: #ffffff;
+        }
+
+        .subhead {
+          font-family: "Inter", sans-serif;
+          font-weight: 600;
+          font-size: 40px;
+          line-height: 1.3;
+          color: #8bc63f;
+          text-align: center;
+          white-space: nowrap;
+          opacity: 0;
+          will-change: transform, opacity;
+        }
+
+        .cta-button {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 30px 68px;
+          background: #22c55e;
+          border-radius: 999px;
+          font-family: "Inter", sans-serif;
+          font-weight: 800;
+          font-size: 34px;
+          letter-spacing: 0.03em;
+          color: #ffffff;
+          white-space: nowrap;
+          opacity: 0;
+          transform-origin: 50% 50%;
+          will-change: transform, opacity;
+        }
+
+        .url-text {
+          font-family: "Inter", sans-serif;
+          font-weight: 500;
+          font-size: 26px;
+          letter-spacing: 0.02em;
+          color: #9ca3af;
+          opacity: 0;
+          will-change: transform, opacity;
+        }
+
+        /* ---- Scene 5 tail: the one true exit for the whole video ---- */
+        .exit-fade {
+          position: absolute;
+          inset: 0;
+          background: #0b0b0d;
+          opacity: 0;
+          pointer-events: none;
+        }
+      </style>
+
+      <div
+        id="root"
+        data-composition-id="06-waitlist-close"
+        data-width="1920"
+        data-height="1080"
+        data-duration="8"
+      >
+        <div id="ground" class="clip void-bg" data-start="0" data-duration="8" data-track-index="0"></div>
+
+        <div id="bg-glow" class="clip bg-glow" data-start="0" data-duration="8" data-track-index="1"></div>
+
+        <div id="stage" class="clip stage" data-start="0" data-duration="8" data-track-index="2">
+          <div class="mark-row" id="mark-row">
+            <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="46" fill="#8bc63f"></circle>
+              <path d="M50 36 L63 45.7 L58.2 61.3 L41.8 61.3 L37 45.7 Z" fill="#14241a"></path>
+              <path d="M63 45.7 L79 40 L70 20 L54 28 Z" fill="#14241a"></path>
+              <path d="M37 45.7 L21 40 L30 20 L46 28 Z" fill="#14241a"></path>
+              <path d="M41.8 61.3 L34 75 L50 84 L66 75 L58.2 61.3 Z" fill="#14241a"></path>
+              <path
+                d="M50 36 L50 25 M37 45.7 Q30 55 34 75 M63 45.7 Q70 55 66 75"
+                fill="none"
+                stroke="#14241a"
+                stroke-width="2.4"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+            <div class="wordmark-text">fancup</div>
+          </div>
+
+          <div class="subhead" id="subhead">The first arena where both worlds collide.</div>
+
+          <div class="cta-button" id="cta-button">JOIN THE WAITLIST NOW</div>
+
+          <div class="url-text" id="url-text">fancup.trenchroyale.com</div>
+        </div>
+
+        <div id="exit-fade" class="clip exit-fade" data-start="7.4" data-duration="0.6" data-track-index="3"></div>
+      </div>
+
+      <script src="assets/vendor/gsap.min.js"></script>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        // ── Scene 1 (0.0–1.4s) ──────────────────────────────────────────
+        // Hard cut to the held ink ground (the .void-bg clip is visible from
+        // t=0 with no fade — this frame's opening is a cut, not a dissolve).
+        // A soft green-tinted radial glow blooms in low-amplitude behind
+        // center, echoing the real page's background treatment
+        // (ambient-glow-bloom, bloom-in phase).
+        const bgGlow = document.getElementById("bg-glow");
+        const GLOW_PEAK = 0.32;
+        tl.fromTo(
+          bgGlow,
+          { opacity: 0, scale: 0.85 },
+          { opacity: GLOW_PEAK, scale: 1, duration: 1.0, ease: "power2.out" },
+          0.1,
+        );
+
+        // Bounded idle breathe on the glow through the hold — a single finite
+        // tween advances a phase driver; onUpdate nudges opacity/scale a hair
+        // around the peak. Not a repeat/yoyo loop (ambient-glow-bloom, Form A).
+        // Ends right where the exit fade begins (7.4s) so the jitter never
+        // fights the fade-to-black.
+        const glowPhase = { p: 0 };
+        const BREATHE_START = 1.1;
+        const BREATHE_DUR = 7.4 - BREATHE_START;
+        const BREATHE_CYCLES = 2;
+        const OPACITY_AMP = 0.03;
+        const SCALE_AMP = 0.02;
+        tl.to(
+          glowPhase,
+          {
+            p: Math.PI * 2 * BREATHE_CYCLES,
+            duration: BREATHE_DUR,
+            ease: "none",
+            onUpdate: () => {
+              const s = Math.sin(glowPhase.p);
+              gsap.set(bgGlow, { opacity: GLOW_PEAK + s * OPACITY_AMP, scale: 1 + s * SCALE_AMP });
+            },
+          },
+          BREATHE_START,
+        );
+
+        // ── Scene 2 (1.4–2.8s) ──────────────────────────────────────────
+        // The real fancup mark (icon + lowercase wordmark) scale-pops in
+        // centered — small and clean, matching real proportions. Smooth
+        // long-tail settle (spring-pop-entrance, calm-settle variant), no
+        // overshoot.
+        const markRow = document.getElementById("mark-row");
+        tl.fromTo(
+          markRow,
+          { scale: 0, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.55, ease: "power3.out" },
+          1.4,
+        );
+
+        // ── Scene 3 (2.8–4.2s) ───────────────────────────────────────────
+        // The real subhead fades in beneath the mark, in lime green.
+        const subhead = document.getElementById("subhead");
+        tl.fromTo(
+          subhead,
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+          2.8,
+        );
+
+        // ── Scene 4 (4.2–6.2s) ───────────────────────────────────────────
+        // "JOIN THE WAITLIST NOW" resolves as a solid green CTA-button-styled
+        // pill via a spring-pop entrance on a smooth long-tail settle — no
+        // overshoot, per this video's bounce-free doctrine (applies to the
+        // CTA button too).
+        const ctaButton = document.getElementById("cta-button");
+        tl.fromTo(
+          ctaButton,
+          { scale: 0, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.55, ease: "power3.out" },
+          4.2,
+        );
+
+        // ── Scene 5 (6.2–8.0s) ───────────────────────────────────────────
+        // The real URL settles beneath the button in gray, then everything
+        // holds. This IS the final frame of the video, so it may (and should)
+        // carry a true exit: a fade to black in the last ~0.5s.
+        const urlText = document.getElementById("url-text");
+        tl.fromTo(
+          urlText,
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+          6.2,
+        );
+
+        // The one true exit for the whole video: fade to black, 7.4s → 8.0s.
+        const exitFade = document.getElementById("exit-fade");
+        tl.fromTo(
+          exitFade,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.6, ease: "power2.inOut" },
+          7.4,
+        );
+
+        window.__timelines["06-waitlist-close"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

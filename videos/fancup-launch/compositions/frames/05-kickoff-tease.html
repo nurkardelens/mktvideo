@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>05 Kickoff Tease</title>
+    <!-- head is metadata only for the source file; the runtime discards everything
+         outside the template element — see hyperframes-core/references/sub-compositions.md -->
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face{font-family:"JetBrains Mono";font-weight:400 500;font-style:normal;font-display:block;src:url("assets/fonts/JetBrainsMono-Variable.woff2") format("woff2");}
+
+        /* Root: styled by #root, never a class — see sub-compositions.md Pitfall 3 */
+        #root {
+          position: relative;
+          width: 1920px;
+          height: 1080px;
+          overflow: hidden;
+        }
+
+        /* Full-bleed ground lives on its own class="clip" layer, never on #root itself. */
+        .void-bg {
+          position: absolute;
+          inset: 0;
+          background: #0b0b0d;
+        }
+
+        .scene {
+          position: absolute;
+          inset: 0;
+        }
+
+        /* Arc container — lower third, asymmetric, ~40% of frame width. Static
+           position via inset/margin only; GSAP only ever touches opacity/filter
+           on the SVG stroke inside, never a transform on this wrapper. */
+        .arc-wrap {
+          position: absolute;
+          left: 50%;
+          top: 760px;
+          width: 780px;
+          height: 780px;
+          margin-left: -390px;
+          z-index: 1;
+        }
+        .arc-svg {
+          width: 100%;
+          height: 100%;
+          overflow: visible;
+        }
+        .arc-glow {
+          fill: none;
+          stroke: #00e5ff;
+          stroke-width: 10;
+          stroke-linecap: round;
+          opacity: 0.35;
+          filter: blur(14px);
+        }
+        .arc-line {
+          fill: none;
+          stroke: #00e5ff;
+          stroke-width: 3;
+          stroke-linecap: round;
+        }
+        #arc-group {
+          opacity: 0;
+          will-change: opacity;
+        }
+
+        /* Fragment text — fixed centered position (static transform: translateX
+           only, never GSAP-animated), sits above the arc, well inside keep-out.
+           JetBrains Mono, uppercase, wide tracking: a terminal/glitch register. */
+        .fragment-wrap {
+          position: absolute;
+          left: 50%;
+          top: 470px;
+          transform: translateX(-50%);
+          z-index: 2;
+          font-family: "JetBrains Mono", monospace;
+          font-weight: 500;
+          font-size: 88px;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          color: #ffffff;
+          white-space: nowrap;
+          text-align: center;
+        }
+        .frag-text {
+          opacity: 0;
+          will-change: opacity;
+        }
+        .glitch-tail {
+          color: #e8113c;
+        }
+      </style>
+
+      <div id="root" data-composition-id="05-kickoff-tease" data-width="1920" data-height="1080" data-duration="5.4">
+        <div id="void-bg" class="clip void-bg" data-start="0" data-duration="5" data-track-index="0"></div>
+
+        <div id="scene" class="clip scene" data-start="0" data-duration="5" data-track-index="1">
+          <div class="arc-wrap">
+            <svg class="arc-svg" viewBox="0 0 780 780" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g id="arc-group">
+                <path class="arc-glow" d="M 60 390 A 330 330 0 0 1 720 390" />
+                <path class="arc-line" id="arc-path" d="M 60 390 A 330 330 0 0 1 720 390" />
+              </g>
+            </svg>
+          </div>
+
+          <div class="fragment-wrap">
+            <span class="frag-text" id="frag-text">KICKOFF IS COM<span class="glitch-tail">—</span></span>
+          </div>
+        </div>
+      </div>
+
+      <script src="assets/vendor/gsap.min.js"></script>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        const arcGroup = document.getElementById("arc-group");
+        const fragText = document.getElementById("frag-text");
+
+        // ── Scene 1 (0.0–1.6s): the arc fades in low in frame, echoing the real
+        // site's bottom-of-page orbit line. ──
+        tl.fromTo(arcGroup, { opacity: 0 }, { opacity: 0.55, duration: 1.4, ease: "power2.out" }, 0.2);
+
+        // ── Scene 2 (1.6–3.4s): "KICKOFF IS COM—" glitch-types in, holds briefly,
+        // hard-cuts to blank before the word ever completes — repeats once,
+        // slightly faster. discrete-text-sequence single-flash form: instant
+        // tl.set jumps, never a CSS transition, never spelling "COMING". ──
+        tl.set(fragText, { opacity: 1 }, 1.6);
+        tl.set(fragText, { opacity: 0 }, 2.3);
+        tl.set(fragText, { opacity: 1 }, 2.5);
+        tl.set(fragText, { opacity: 0 }, 3.0);
+
+        // ── Scene 3 (3.4–5.0s): the arc brightens and pulses once
+        // (ambient-glow-bloom, single bloom-and-hold, no repeat); the phrase
+        // flashes a final time and holds, unresolved, into the cut. ──
+        tl.fromTo(arcGroup, { opacity: 0.55 }, { opacity: 0.9, duration: 0.5, ease: "power2.out" }, 3.4);
+        tl.to(arcGroup, { opacity: 0.7, duration: 0.5, ease: "power2.inOut" }, 3.9);
+
+        tl.set(fragText, { opacity: 1 }, 3.6);
+
+        // Subtle jitter only on the arc's glow for the remainder — a finite
+        // sine-driven onUpdate, never repeat/yoyo, never enough to read as
+        // breathing. Runs from the final flash to the end of the frame.
+        const JITTER_START = 3.9;
+        const JITTER_DUR = 1.1; // runs to t = 5.0
+        const jitter = { p: 0 };
+        tl.to(
+          jitter,
+          {
+            p: Math.PI * 2 * 2.5,
+            duration: JITTER_DUR,
+            ease: "none",
+            onUpdate: () => {
+              const s = Math.sin(jitter.p);
+              gsap.set(arcGroup, { opacity: 0.7 + s * 0.06 });
+            },
+          },
+          JITTER_START,
+        );
+
+        window.__timelines["05-kickoff-tease"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

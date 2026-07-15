@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>04 Collision</title>
+    <!-- head is metadata only for the source file; the runtime discards everything
+         outside the template element — see hyperframes-core/references/sub-compositions.md -->
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face{font-family:"Archivo Black";font-weight:400;font-style:normal;font-display:block;src:url("assets/fonts/ArchivoBlack-Regular.woff2") format("woff2");}
+
+        /* Root: styled by #root, never a class — see sub-compositions.md Pitfall 3 */
+        #root {
+          position: relative;
+          width: 1920px;
+          height: 1080px;
+          overflow: hidden;
+        }
+
+        /* Full-bleed ground lives on its own class="clip" layer, never on #root itself. */
+        .void-bg {
+          position: absolute;
+          inset: 0;
+          background: #0b0b0d;
+        }
+
+        .scene {
+          position: absolute;
+          inset: 0;
+        }
+
+        /* Shared ambient halo — sits behind both orbs (z-index below), centered on
+           the midpoint between their resting positions. Un-triggered bloom-and-hold
+           form (ambient-glow-bloom): blooms once in sync with the orbs' pulse, then
+           settles to a low held glow. Centered via margin/inset, NOT transform, so
+           its GSAP-animated `scale` never fights a static CSS transform. */
+        .glow-shared {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 900px;
+          height: 460px;
+          margin-left: -450px;
+          margin-top: -230px;
+          border-radius: 50%;
+          z-index: 1;
+          background: radial-gradient(
+            ellipse at center,
+            rgba(153, 69, 255, 0.4) 0%,
+            rgba(232, 17, 60, 0.32) 48%,
+            rgba(11, 11, 13, 0) 76%
+          );
+          opacity: 0;
+          pointer-events: none;
+          will-change: opacity, transform;
+        }
+
+        /* One orb primitive — pinned at top:0/left:0 with no static transform, so
+           GSAP's x/y/scale are the ONLY transform source (no CSS-transform conflict). */
+        .orb {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          z-index: 2;
+          will-change: transform;
+        }
+        /* Orb A — purple-to-teal, echoing "Solana" (Solana's own brand colors). */
+        .orb-a {
+          background: radial-gradient(circle at 34% 30%, #c891ff 0%, #9945ff 45%, #14f195 100%);
+        }
+        /* Orb B — red, echoing "Chiliz" (frame.md's `orange` role). */
+        .orb-b {
+          background: radial-gradient(circle at 34% 30%, #ff5d78 0%, #e8113c 55%, #8a0d27 100%);
+        }
+
+        /* Flash-text fragments — never both visible at once, never held long enough
+           to read as an explanation (discrete-text-sequence, single-flash form).
+           Fixed top anchor + translateX(-50%) is a STATIC centering transform; GSAP
+           only ever animates opacity on these elements, so there is no conflict. */
+        .fragment {
+          position: absolute;
+          left: 50%;
+          top: 710px;
+          transform: translateX(-50%);
+          z-index: 3;
+          font-family: "Archivo Black", sans-serif;
+          text-transform: uppercase;
+          line-height: 0.92;
+          letter-spacing: -0.01em;
+          color: #ffffff;
+          text-align: center;
+          white-space: nowrap;
+          opacity: 0;
+          will-change: opacity;
+        }
+        #frag-1 {
+          font-size: 118px;
+        }
+        #frag-2 {
+          font-size: 152px;
+        }
+      </style>
+
+      <div id="root" data-composition-id="04-collision" data-width="1920" data-height="1080" data-duration="5.5">
+        <div id="void-bg" class="clip void-bg" data-start="0" data-duration="5" data-track-index="0"></div>
+
+        <div id="scene" class="clip scene" data-start="0" data-duration="5" data-track-index="1">
+          <div id="glow-shared" class="glow-shared"></div>
+          <div id="orb-a" class="orb orb-a"></div>
+          <div id="orb-b" class="orb orb-b"></div>
+          <div id="frag-1" class="fragment">TWO WORLDS.</div>
+          <div id="frag-2" class="fragment">ONE ARENA.</div>
+        </div>
+      </div>
+
+      <script src="assets/vendor/gsap.min.js"></script>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        const orbA = document.getElementById("orb-a");
+        const orbB = document.getElementById("orb-b");
+        const glow = document.getElementById("glow-shared");
+        const frag1 = document.getElementById("frag-1");
+        const frag2 = document.getElementById("frag-2");
+
+        // ── Geometry — orbs never touch; resting centers 320px apart, so the
+        //    gap between their nearest edges (120px orbs) is a held ~200px. ──
+        const ORB_R = 60; // half of the 120px orb diameter
+
+        const ORB_A_END = { cx: 800, cy: 480 }; // resting center, left-of-center
+        const ORB_B_END = { cx: 1120, cy: 560 }; // resting center, right-of-center — different y = asymmetric
+
+        const ORB_A_START = { cx: -260, cy: 560 }; // fully off the left edge
+        const ORB_B_START = { cx: 2180, cy: 600 }; // fully off the right edge
+
+        // Park both orbs off-canvas before any tween runs.
+        gsap.set(orbA, { x: ORB_A_START.cx - ORB_R, y: ORB_A_START.cy - ORB_R });
+        gsap.set(orbB, { x: ORB_B_START.cx - ORB_R, y: ORB_B_START.cy - ORB_R });
+
+        // ── Scene 1 (0.0–1.8s → carries into 2.0/2.25s): CENTERED CONVERGENCE,
+        //    ASYMMETRIC ENTRY. Orb A starts immediately; Orb B is staggered
+        //    0.15s later, travels a longer distance over a longer duration, and
+        //    settles at a different height — the entry paths are deliberately
+        //    not mirror-symmetric. Both drift slowly toward center and stop at
+        //    the held ~200px-apart standoff — they never fully merge. ──
+        tl.to(
+          orbA,
+          { x: ORB_A_END.cx - ORB_R, y: ORB_A_END.cy - ORB_R, duration: 2.0, ease: "power3.out" },
+          0,
+        );
+        tl.to(
+          orbB,
+          { x: ORB_B_END.cx - ORB_R, y: ORB_B_END.cy - ORB_R, duration: 2.1, ease: "power3.out" },
+          0.15,
+        );
+
+        // ── Scene 2 (1.8–3.4s): fragment "TWO WORLDS." flashes once in cream,
+        //    holds 0.4s, hard-cuts to blank (discrete-text-sequence, single
+        //    flash — instant tl.set jumps, never a CSS transition). ──
+        tl.set(frag1, { opacity: 1 }, 1.8);
+        tl.set(frag1, { opacity: 0 }, 2.2);
+
+        // ── Bounded, deterministic idle jitter on both orbs while they hold at
+        //    standoff (STORYBOARD direction: "subtle jitter is the only
+        //    sanctioned aliveness on a settled hero"). A finite onUpdate driver
+        //    reading a sine phase — NOT repeat/yoyo — nudges each orb a few
+        //    pixels around its resting center. Starts after Scene 1 settles and
+        //    runs to the end; amplitude is small enough that even combined with
+        //    the Scene 3 pulse the orbs stay well clear of the ~200px gap. ──
+        const JITTER_START = 2.5;
+        const JITTER_DUR = 2.5; // runs to t = 5.0
+        const JITTER_AMP = 5; // px — barely-perceptible drift, never enough to close the gap
+
+        const jitterA = { p: 0 };
+        tl.to(
+          jitterA,
+          {
+            p: Math.PI * 2 * 5, // 5 cycles over JITTER_DUR — a 0.5s period
+            duration: JITTER_DUR,
+            ease: "none",
+            onUpdate: () => {
+              const s = Math.sin(jitterA.p);
+              const c = Math.cos(jitterA.p * 0.6);
+              gsap.set(orbA, {
+                x: ORB_A_END.cx - ORB_R + s * JITTER_AMP,
+                y: ORB_A_END.cy - ORB_R + c * JITTER_AMP,
+              });
+            },
+          },
+          JITTER_START,
+        );
+
+        const jitterB = { q: 0 };
+        tl.to(
+          jitterB,
+          {
+            q: Math.PI * 2 * 4.3, // slightly different cycle count — deliberately out of lockstep with A
+            duration: JITTER_DUR,
+            ease: "none",
+            onUpdate: () => {
+              const s = Math.sin(jitterB.q);
+              const c = Math.cos(jitterB.q * 0.6);
+              gsap.set(orbB, {
+                x: ORB_B_END.cx - ORB_R + s * JITTER_AMP,
+                y: ORB_B_END.cy - ORB_R + c * JITTER_AMP,
+              });
+            },
+          },
+          JITTER_START,
+        );
+
+        // ── Scene 3 (3.4–5.0s): second fragment "ONE ARENA." flashes the same
+        //    way, slightly larger. ──
+        tl.set(frag2, { opacity: 1 }, 3.4);
+        tl.set(frag2, { opacity: 0 }, 3.8);
+
+        // Then the two orbs pulse ONCE in sync (ambient-glow-bloom: a single
+        // shared bloom, not a merge) — the shared halo blooms behind both orbs
+        // while both orbs swell together, then everything settles to a held,
+        // mysterious stillness with no resolution. Bloom-and-hold form (short
+        // remaining window): one fromTo up, one to back down to a low hold —
+        // no ongoing breathe needed after such a short scene tail.
+        const PULSE_START = 3.8;
+        const PULSE_DUR = 0.5;
+        const SETTLE_DUR = 0.5;
+
+        tl.fromTo(
+          glow,
+          { opacity: 0, scale: 0.85 },
+          { opacity: 0.34, scale: 1.05, duration: PULSE_DUR, ease: "power2.out" },
+          PULSE_START,
+        );
+        tl.to(glow, { opacity: 0.16, scale: 1.0, duration: SETTLE_DUR, ease: "power2.inOut" }, PULSE_START + PULSE_DUR);
+
+        tl.fromTo(
+          [orbA, orbB],
+          { scale: 1 },
+          { scale: 1.08, duration: PULSE_DUR, ease: "power2.out" },
+          PULSE_START,
+        );
+        tl.to([orbA, orbB], { scale: 1, duration: SETTLE_DUR, ease: "power2.inOut" }, PULSE_START + PULSE_DUR);
+
+        window.__timelines["04-collision"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

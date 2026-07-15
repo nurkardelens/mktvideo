@@ -67,48 +67,38 @@
         data-composition-id="03-reveal"
         data-composition-src="compositions/frames/03-reveal.html"
         data-start="7"
-        data-duration="4.5"
+        data-duration="5.5"
         data-track-index="0"
       ></div>
 
       <div
-        id="el-04-six-nations"
+        id="el-04-collision"
         class="scene"
-        data-composition-id="04-six-nations"
-        data-composition-src="compositions/frames/04-six-nations.html"
-        data-start="11"
-        data-duration="4.5"
+        data-composition-id="04-collision"
+        data-composition-src="compositions/frames/04-collision.html"
+        data-start="12"
+        data-duration="5.5"
         data-track-index="1"
       ></div>
 
       <div
-        id="el-05-ai-plays"
+        id="el-05-kickoff-tease"
         class="scene"
-        data-composition-id="05-ai-plays"
-        data-composition-src="compositions/frames/05-ai-plays.html"
-        data-start="15"
-        data-duration="4.5"
-        data-track-index="0"
-      ></div>
-
-      <div
-        id="el-06-trust-triad"
-        class="scene"
-        data-composition-id="06-trust-triad"
-        data-composition-src="compositions/frames/06-trust-triad.html"
-        data-start="19"
+        data-composition-id="05-kickoff-tease"
+        data-composition-src="compositions/frames/05-kickoff-tease.html"
+        data-start="17"
         data-duration="5.4"
-        data-track-index="1"
+        data-track-index="0"
       ></div>
 
       <div
-        id="el-07-brand-close"
+        id="el-06-waitlist-close"
         class="scene"
-        data-composition-id="07-brand-close"
-        data-composition-src="compositions/frames/07-brand-close.html"
-        data-start="24"
-        data-duration="6"
-        data-track-index="0"
+        data-composition-id="06-waitlist-close"
+        data-composition-src="compositions/frames/06-waitlist-close.html"
+        data-start="22"
+        data-duration="8"
+        data-track-index="1"
       ></div>
 
       <!-- SFX -->
@@ -155,41 +145,33 @@
       <audio
         id="el-sfx-5"
         src="assets/sfx/whoosh-short.mp3"
-        data-start="11"
+        data-start="12"
         data-duration="0.57"
         data-track-index="25"
         data-volume="0.35"
       ></audio>
       <audio
         id="el-sfx-6"
-        src="assets/sfx/impact-bass-2.mp3"
-        data-start="15"
-        data-duration="2.59"
+        src="assets/sfx/whoosh-cinematic.mp3"
+        data-start="17"
+        data-duration="5.54"
         data-track-index="26"
         data-volume="0.35"
       ></audio>
       <audio
         id="el-sfx-7"
-        src="assets/sfx/pop.mp3"
-        data-start="19"
-        data-duration="0.72"
+        src="assets/sfx/whoosh-cinematic.mp3"
+        data-start="22"
+        data-duration="5.54"
         data-track-index="27"
         data-volume="0.35"
       ></audio>
       <audio
         id="el-sfx-8"
-        src="assets/sfx/whoosh-cinematic.mp3"
-        data-start="24"
-        data-duration="5.54"
-        data-track-index="28"
-        data-volume="0.35"
-      ></audio>
-      <audio
-        id="el-sfx-9"
         src="assets/sfx/chime.mp3"
-        data-start="24"
+        data-start="22"
         data-duration="2.5"
-        data-track-index="29"
+        data-track-index="28"
         data-volume="0.35"
       ></audio>
     </div>
@@ -201,14 +183,12 @@
       (function () { var tl = window.__timelines["main"];
         tl.to("#el-02-escalation", { scale: 2.5, opacity: 0, filter: "blur(8px)", duration: 0.4, ease: "power3.in" }, 7);
         tl.fromTo("#el-03-reveal", { scale: 0.5, opacity: 0, filter: "blur(8px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "power3.out" }, 7);
-        tl.to("#el-03-reveal", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 11);
-        tl.fromTo("#el-04-six-nations", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 11);
-        tl.to("#el-04-six-nations", { x: -1920, duration: 0.5, ease: "power3.inOut" }, 15);
-        tl.fromTo("#el-05-ai-plays", { x: 1920, opacity: 1 }, { x: 0, duration: 0.5, ease: "power3.inOut" }, 15);
-        tl.to("#el-05-ai-plays", { x: -1920, duration: 0.5, ease: "power3.inOut" }, 19);
-        tl.fromTo("#el-06-trust-triad", { x: 1920, opacity: 1 }, { x: 0, duration: 0.5, ease: "power3.inOut" }, 19);
-        tl.to("#el-06-trust-triad", { scale: 2.5, opacity: 0, filter: "blur(8px)", duration: 0.4, ease: "power3.in" }, 24);
-        tl.fromTo("#el-07-brand-close", { scale: 0.5, opacity: 0, filter: "blur(8px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "power3.out" }, 24);
+        tl.to("#el-03-reveal", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 12);
+        tl.fromTo("#el-04-collision", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 12);
+        tl.to("#el-04-collision", { x: -1920, duration: 0.5, ease: "power3.inOut" }, 17);
+        tl.fromTo("#el-05-kickoff-tease", { x: 1920, opacity: 1 }, { x: 0, duration: 0.5, ease: "power3.inOut" }, 17);
+        tl.to("#el-05-kickoff-tease", { scale: 2.5, opacity: 0, filter: "blur(8px)", duration: 0.4, ease: "power3.in" }, 22);
+        tl.fromTo("#el-06-waitlist-close", { scale: 0.5, opacity: 0, filter: "blur(8px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "power3.out" }, 22);
         tl.to({}, { duration: 30 }, 0); // full-span anchor — main.duration() == composition total (Studio master duration)
       })();
     </script>

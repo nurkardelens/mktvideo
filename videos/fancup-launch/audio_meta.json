@@ -46,27 +46,20 @@
     },
     {
       "frame": 5,
-      "file": "assets/sfx/impact-bass-2.mp3",
-      "offset_s": 0,
-      "duration_s": 2.59,
-      "volume": 0.35
-    },
-    {
-      "frame": 6,
-      "file": "assets/sfx/pop.mp3",
-      "offset_s": 0,
-      "duration_s": 0.72,
-      "volume": 0.35
-    },
-    {
-      "frame": 7,
       "file": "assets/sfx/whoosh-cinematic.mp3",
       "offset_s": 0,
       "duration_s": 5.54,
       "volume": 0.35
     },
     {
-      "frame": 7,
+      "frame": 6,
+      "file": "assets/sfx/whoosh-cinematic.mp3",
+      "offset_s": 0,
+      "duration_s": 5.54,
+      "volume": 0.35
+    },
+    {
+      "frame": 6,
       "file": "assets/sfx/chime.mp3",
       "offset_s": 0,
       "duration_s": 2.5,
